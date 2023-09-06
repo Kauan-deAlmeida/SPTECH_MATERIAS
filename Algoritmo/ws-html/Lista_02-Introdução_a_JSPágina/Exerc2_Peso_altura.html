@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 02</title>
+    <!-- 2. Crie uma página que solicite ao usuário que digite seu peso e altura. 
+        a) Deve haver um botão com o texto "Fale comigo". 
+        b) Ao clicar no botão, deve aparecer uma frase como está numa caixinha de alerta: 
+        "Você pesa X e tem Y de altura" - Onde X e Y são os valores que o usuário digitou, claro -->
+</head>
+<body>
+    Digite seu peso:
+        <input type="number" id="peso">
+    Digite sua altura:
+        <input type="number" id="altura">
+    <button onclick="mtrFrase()">Fale comigo</button>
+</body>
+</html>
+
+<script>
+    function mtrFrase(){
+        alert(`Você pesa ${peso.value}kg e tem ${altura.value} de altura`)
+    }
+</script>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 07</title>
+</head>
+<body>
+    Informe o valor da passagem
+        <input type="number" id="passagem">
+    Informe quantas viagens fará por mês
+        <input type="number" id="qtdPassagem">
+    <button onclick="economia()">Ver economia</button>
+</body>
+</html>
+
+<script>
+    function economia(){
+        alert(`Você economizará R$${passagem.value * qtdPassagem.value / 2} por mês`)
+    }
+ 
+</script>

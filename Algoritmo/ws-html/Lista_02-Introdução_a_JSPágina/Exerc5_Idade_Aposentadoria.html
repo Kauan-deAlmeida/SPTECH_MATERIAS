@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 05</title>
+</head>
+<body>
+    Informe a sua idade
+        <input type="number" id="idade">
+    <button onclick="calApoHomem()">Aposentadoria Homem</button>
+    <button onclick="calApoMulher()">Aposentadoria Mulher</button>
+</body>
+</html>
+
+<script>
+    function calApoHomem(){
+        alert(`tempo que falta para se aposentar: ${70 - idade.value}`)
+    }
+    function calApoMulher(){
+        alert(`tempo que falta para se aposentar: ${60 - idade.value}`)
+    }
+</script>

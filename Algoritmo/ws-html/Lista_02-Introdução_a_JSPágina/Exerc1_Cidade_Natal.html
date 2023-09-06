@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 01</title>
+</head>
+<body>
+    <!--1. Crie um programa o qual: 
+        a) Tenha o campo "Cidade Natal" 
+        b) Tenha o campo "Ano de nascimento" 
+        c) Tenha o botão "Cadastrar" 
+        d) Ao clicar no botão, deve aparecer 1 (um) alert com a frase 
+         " Você nasceu na cidade de X em Y"  - Onde X é o valor do campo em a) e Y é o valor do campo em b)
+     -->
+
+    Cidade Natal    
+        <input type="text" id="cidade">
+    Ano de nascimento
+        <input type="number" id="ano">
+    <button onclick="cadastro()">cadastrar</button>
+</body>
+</html>
+
+<script>
+    function cadastro(){
+        alert(` Você nasceu na cidade de ${cidade.value} em ${ano.value}`)
+    }
+</script>

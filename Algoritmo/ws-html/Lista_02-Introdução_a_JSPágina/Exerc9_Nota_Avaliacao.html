@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 09</title>
+    <!-- 9. Na faculdade SPTech o aluno tem 2 notas: A da "avaliação continuada" e a da "avaliação semestral". 
+         A média final é a soma simples entre 40% da "continuada" e 60% da "semestral". 
+         Assim, para ajudar um aluno para saber o quanto precisa para passar e estagiar em empresas como 
+         Easynvest, C6Bank, Tivit, Banco Safra, Deloitte, HP etc, crie um programa que: 
+         a) Solicite a nota que ele tirou na "continuada" e na "semestral" 
+         b) Solicite o nome do aluno 
+         c) Calcule sua média 
+         d) Exiba uma frase como esta "A média de NOME será de MEDIA". Onde NOME é o valor informado em b) e MEDIA, o valor calculado em c)-->
+</head>
+<body>
+    Informe a nota da continuada
+        <input type="number" id="continuada">
+    Informe a nota da avaliação semestral
+        <input type="number" id="semestral">
+    Informe o nome do aluno
+        <input type="text" id="aluno">
+    <button onclick="media()">exibir media</button>
+</body>
+</html>
+
+<script>
+    function media(){
+        var media = (Number(continuada.value * 0.4) + Number(semestral.value * 0.6))
+        alert(`A média de ${aluno.value} será de ${media}`)
+    }
+</script>
