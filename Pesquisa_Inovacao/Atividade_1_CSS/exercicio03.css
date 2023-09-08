@@ -1,0 +1,27 @@
+#div_A{
+    background-color: #0fd7ff; 
+    height: 850px; 
+    width: 850px;
+}
+#div_B{
+    background-color: #68004e;
+    height: 10%;
+    width: 90%;
+}
+#p_A{
+    background-color: #6d1212;
+    color: #ffffff;
+    font-size: 55px;
+    font-family: 'Calibri';
+    font-weight: inherit;
+}
+#div_D{
+    width: 80% ;
+    height: 70% ;
+    background-color: rgb(192, 147, 0);
+}
+#div_E{
+    width: 20%;
+    height: 60%;
+    background-color: rgb(255, 0, 30); 
+}
