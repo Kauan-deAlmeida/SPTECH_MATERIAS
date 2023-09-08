@@ -1,0 +1,147 @@
+-- ADICIONA SOMENTE NA COLUNA INFORMADA
+
+insert into revista (nome) values
+	('nova_revista');
+
+-- Diferente <>
+select nome from revista where nome <> 'nova_revista';
+
+-- Diferente !=
+select nome from revista where nome != 'nova_revista';
+
+-- Double
+-- Fload
+-- Decimal
+
+
+
+
+
+
+
+
+
+
+
+-- Aula 3
+-- DDL: COMANDOS QUE DEFINEM A TABELA
+	-- CREATE
+    -- ALTER TABLE: ADD COLUMN, DROP COLUMN, MODIFY COLUMN, RENAME COLUMN
+    -- DROP TABLE
+    -- TRUNCATE TABLE
+
+-- DML: COMANDOS QUE MANIPULAM OS DADOS
+		-- SELECT
+        -- INSERT
+        -- UPDATE
+        -- DELETE
+        
+-- SELECT DIFERENCIADOS
+	-- WHERE =
+    -- WHERE LIKE
+    -- WHERE LIKE %
+    -- WHERE LIKE _
+    -- ORDER BY
+    
+-- CORREÇÃO DO EXERCÍCIO 6 DA PRÁTICA 1
+-- CRIAR UM BANCO DE DADOS CHAMADO SPRINT 1
+-- mostrar os bancos de dados existentes
+-- SHOW DATABASES;
+-- excluir um banco de dados
+-- DROP DATABASE sprint1;
+-- criar o banco de dados sprint1
+CREATE DATABASE sprint1;
+-- usar o banco de dados criado
+USE sprint1;
+-- criar a tabela revista
+CREATE TABLE revista (
+idRevista int primary key auto_increment,
+nome varchar(40),
+categoria varchar(30));
+
+INSERT INTO revista (idRevista, nome) VALUES
+	(null, 'Veja');
+
+INSERT INTO revista VALUES
+	(null, 'Capricho', null);
+    
+INSERT INTO revista VALUES
+	(null, 'Quatro Rodas', '');
+    
+INSERT INTO revista (nome) VALUES
+	('Recreio'); 
+
+SELECT * FROM revista; 
+
+DESCRIBE revista;
+
+UPDATE revista SET categoria = 'Diversos'
+		WHERE idRevista = 1;
+        
+UPDATE revista SET categoria = 'Infanto-juvenil'
+	WHERE idRevista = 2 OR idRevista = 4;
+    
+UPDATE revista SET categoria = 'Infanto juvenil'
+	WHERE idRevista IN (2,4);
+    
+ALTER TABLE revista MODIFY COLUMN categoria varchar(40);
+
+DESCRIBE revista;
+
+-- tipagem numérica
+-- inteiros INT
+-- decimais
+	-- FLOAT 7 DÍGITOS 12345,67
+    -- DOUBLE 15 DÍGITOS 
+    -- DECIMAL() 32 DÍGITOS
+		-- DECIMAL(5,2) 123,45
+		-- DECIMAL(7,4) 123,4567
+        -- DECIMAL(2,1) 1,2
+ALTER TABLE revista ADD COLUMN preco FLOAT;
+SELECT * FROM revista;
+
+UPDATE revista SET preco = 1.99
+	WHERE idRevista IN (1,2);
+    
+ALTER TABLE revista MODIFY COLUMN preco DECIMAL(4,2);
+
+UPDATE revista SET preco = 10.99
+	WHERE idRevista = 3;
+
+UPDATE revista SET preco = 0.99
+	WHERE idRevista = 4;
+    
+SELECT * FROM revista;
+
+ALTER TABLE revista auto_increment = 100;
+
+INSERT INTO revista (nome) VALUES
+	('Vogue');
+    
+DELETE FROM revista WHERE idRevista = 100;
+
+INSERT INTO revista (nome) VALUES
+	('Vogue');
+    
+SELECT * FROM revista;
+
+-- LIMPAR A MINHA TABELA
+TRUNCATE TABLE revista;
+
+INSERT INTO revista (nome) VALUES
+	('SPTech');
+    
+SELECT * FROM revista;
+
+INSERT INTO revista (nome) VALUES
+	('Capricho');
+INSERT INTO revista (nome) VALUES
+	('Quatro Rodas'),
+    ('Veja');
+-- DIFERENTE <>
+SELECT nome FROM revista 
+	WHERE nome <> 'SPTech';
+-- DIFERENTE !=
+SELECT nome FROM revista 
+	WHERE nome != 'SPTech';
+    
