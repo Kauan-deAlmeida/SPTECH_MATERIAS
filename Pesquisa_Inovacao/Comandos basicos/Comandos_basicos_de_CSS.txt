@@ -1,0 +1,42 @@
+-- CSS
+
+width - largura
+height - altura
+backgroud-color - cor de fundo
+border-radius - arredondamento das bordas, deixando mais circular
+border - borda, limite
+border: solid 5px - aumenta a grossura da borda, caso n tenha o "solid" não ira ter uma borda solida aparecendo
+margin - margem
+font-family - escolhe qual fonte ira usar como: arial, calibre etc...
+sans-serif - negrito
+font-size - tamanho da fonte, letra
+
+<link rel="stylesheet" href="Caminho_do_arquivo.css"> - caso seja feito insterno, será necessario informar o caminho do seu arquivo.
+.nomeDaClass - para criar uma classe em css
+#nomeDoId - para criar id em css
+class="nomeDaClass" - para usar a classe no html
+id="nomeDoId" - para usar o id no html
+
+flex-box
+margin: auto - deixa a div no centro
+display: flex - informa que tudo que estiver dentro do conteudo será flexivel, sendo assim se adaptando dependendo da tela que estiver mexendo
+"HORISONTAL" justify-content: center - deixa tudo que estiver no conteudo no centro 
+"HORISONTAL" justify-content: end - deixa tudo que estiver no conteudo no final da pagina
+
+"VERTICAL"align-items: center - deixa tudo que estiver dentro do conteudo no meio na vertical
+"VERTICAL"align-items: end - deixa tudo que estiver dentro do conteudo no final na vertical
+"VERTICAL"align-self - alinha a si mesmo
+
+start - deixa no inicio
+space-around - cria espaços entre dois elementos exatamente do mesmo tamanho do conteudo
+space-between - cria espaço exatamente no meio de dois conteudos, sem movelas de lugar
+space-evenly - cria espaços proporcionais antes, no meio e depois do conteudo.
+flex-direction: column - deixa tudo que estiver dentro do conteudo alinhados um a baixo do outro, deixando um no inico, meio e final. 
+
+
+
+
+
+
+
+
