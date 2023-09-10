@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício_05</title>
+    <!-- 5. Crie um programa em HTML/JS o qual:
+         a) Solicite o valor da passagem de ônibus;
+         b) Solicite a quantidade de viagens que o usuário faz por mês;
+         c) Solicite a distância do trabalho dele até sua casa (em km);
+         d) Ao clicar em "Calcular VT" calcule e exiba na tela quanto o usuário gastará por mês com transporte com uma frase como esta:
+         Você vai gastar R$X por mês com transporte.
+         *Obs: considere que uma viagem de Uber (99, cabify, etc) custa R$0,75 por km (ou seja, uma viagem de 10km custará R$7,50).
+         *Obs: considere que o número de viagens de Uber (99, cabify, etc) que o usuário faz por mês é de 10% do número de viagens de ônibus 
+         (ou seja, se ele indicar que faz 50 viagens, considere 45 de ônibus e 5 de transporte de aplicativo).-->
+</head>
+<body>
+    Informe o valor da passagem de onibus:
+        <input type="text" id="pasOnibus"><br>
+    Informe a quantidade de viagens usadas por mês:
+        <input type="text" id="viagensMes"><br>
+    Informe a distância do trabalho até sua casa (em km):
+        <input type="text" id="dis_trabalho_casa"><br>
+    <button onclick="mostrarTotal()">Calcular VT</button>
+    <div id="valorTotal"></div>
+</body>
+</html>
+
+<script>
+    function mostrarTotal(){
+        var passagemTotal = Number(pasOnibus.value) * (Number(viagensMes.value) - viagensMes.value * 0.1)
+        var viagemUber = (Number(dis_trabalho_casa.value) * 0.75) * Number(viagensMes.value) * 0.1
+        var soma = passagemTotal + viagemUber
+    
+        valorTotal.innerHTML = `
+        Você vai gastar R$${soma} por mês com transporte
+        `
+    }
+
+
+</script>

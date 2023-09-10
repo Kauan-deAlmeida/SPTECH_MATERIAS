@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício_02</title>
+    <!-- 2. Crie um programa em HTML/JS o qual:
+         a) Solicite a quantidade de votos que o "Candidato A" teve na eleição;
+         b) Solicite a quantidade de votos que o "Candidato B" teve na eleição;
+         c) Solicite a quantidade de votos brancos que houveram na eleição;
+         d) Solicite a quantidade de votos nulos que houveram na eleição;
+         e) Ao clicar em "Resultado da Eleição", exibir textos  conforme o exemplo abaixo:
+
+         Total de votos: 200
+         Candidato A: 40% (80 votos)
+         Candidato B: 35% (70 votos)
+         Inválidos: 25% (50 votos)
+
+         A quantidade de votos "Inválidos" é a soma de brancos e nulos - valores colhidos nos itens c) e d) -
+         Não se preocupe em mostrar primeiro o "vencedor". Não temos como saber isso com o que aprendemos na programação até aqui ;) 
+         Mostre os candidatos na ordem que quiser.-->
+</head>
+<body>
+    <div>
+        Informe os votos do candidato A
+            <input type="text" id="vA"><br>
+        Informe os votos do candidato B
+            <input type="text" id="vB"><br>
+        Informe os votos Brancos
+            <input type="text" id="vBrancos"><br>
+        Informe os votos Nulos    
+            <input type="text" id="vNulo"><br>
+        <button onclick="mostrarTotal()">Resultado da Eleição</button>
+        <div id="totalVotos"></div>
+    </div>
+</body>
+</html>
+
+<script>
+    function mostrarTotal(){
+        var somaTotal = Number(vA.value) + Number(vB.value) + Number(vBrancos.value) + Number(vNulo.value)
+        var invalido = Number(vBrancos.value) + Number(vNulo.value)
+
+        totalVotos.innerHTML = `
+            Total de votos: <u>${somaTotal}</u><br>
+            Candidato A: ${vA.value * 100 / somaTotal}% (${vA.value} votos)<br>
+            Candidato B: ${vB.value * 100 / somaTotal}% (${vB.value} votos)<br>
+            Inválidos: ${invalido * 100 / somaTotal}% (${invalido} votos)   
+        `
+    }
+</script>

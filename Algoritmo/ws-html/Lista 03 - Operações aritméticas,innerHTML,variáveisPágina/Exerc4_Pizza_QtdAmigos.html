@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício_04</title>
+    <!-- 4. Todo mundo gosta de pizza! É um prato super democrático, pois existem sabores veganos, vegetarianos, sem glúten, "low carb" (pouco carboidrato), doces etc. 
+         Crie um programa em HTML/JS o qual:
+         a) Solicite o sabor e o preço da pizza;
+         b) Solicite a quantidade de amigos que vão comer;
+         c) Ao clicar num botão "Ver valor por amigo", calcule e exiba na tela uma frase como esta:
+         Cada amigo vai colaborar com R$X para a pizza de Y.
+         *Obs: inclua no valor da pizza a caixinha do entregador que é sempre 10% do valor da pizza.
+         *Obs²: Y é o sabor da pizza;-->
+</head>
+<body>
+    <div>
+        Informe o sabor da pizza:
+            <input type="text" id="saborPizza"><br>
+        Informe o preço da pizza:
+            <input type="text" id="precoPizza"><br>
+        Informe quantidade de amigos que vão comer:
+            <input type="text" id="qtdAmigos"><br>
+        <button onclick="btnValor()">Ver valor por amigo</button>
+        <div id="mostrarValor"></div>
+    </div>
+</body>
+</html>
+
+<script>
+    function btnValor(){
+        var valorPagarPorAmigo = (Number(precoPizza.value) * 0.1 + Number(precoPizza.value)) / Number(qtdAmigos.value)
+        mostrarValor.innerHTML = `
+            Cada amigo vai colaborar com R$${valorPagarPorAmigo} para a pizza de ${saborPizza.value}
+        `
+    }
+
+</script>
