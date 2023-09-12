@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio_04</title>
+    <!-- 4a. Refaça a questão anterior de tal forma que a frase do item 
+         d)apareça na cor de letra vermelha com itálico e negrito.-->
+</head>
+<body>
+    Informe o valor da pizza:
+        <input id="valor_pizza"><br>
+    Informe a quantidade de amigos:
+        <input id="qtdAmigos"><br>
+    <button onclick="btnPizza()">Rola a pizza?</button>
+    <div id="valorPorAmigo"></div>
+</body>
+</html>
+
+<script>
+    function btnPizza(){
+        var valorPagar = Number(valor_pizza.value) / Number(qtdAmigos.value);
+        
+        valorPorAmigo.innerHTML = `
+                Cada amigo vai pagar R$${valorPagar} pela pizza<br>
+            `;
+        if(valorPagar > 20){
+            valorPorAmigo.innerHTML += `
+            <b style = "color: #ff0000"><i>Deu ruim! Pizza muito cara!</i></b>
+            `;
+        }
+    }
+
+</script>

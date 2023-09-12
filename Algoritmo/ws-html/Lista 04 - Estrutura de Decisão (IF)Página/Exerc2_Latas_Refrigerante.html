@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio_02</title>
+    <!-- 2. Joka bebe com certa frequência e quer saber quanto consome de refrigerante em 1 ano. 
+         Para ajudá-lo a saber essa informação, crie um programa o qual:  
+         a) Pergunte quantas latinhas de refrigerante toma por dia 
+         b) Ao clicar num botão "Quantos refris?", calcule a quantidade de refrigerante que ele consome em 1 ano, 
+         considerando que 1 ano possui 365 dias 
+         c) Exiba na página a quantidade de latinhas que ele consome por ano 
+         d) Somente caso a quantidade for a partir de 500, exiba também a frase: "Cuidado com a diabetes!"-->
+</head>
+<body>
+    Informe quantas latas de refrigerante toma por dia:
+        <input id="refrigerante">
+    <button onclick="total()">Quantos refris</button>
+    <div id="qtdRefri"></div>
+</body>
+</html>
+
+<script>
+    function total(){
+        var totalRefrigerante = Number(refrigerante.value) * 365;
+        if(totalRefrigerante < 500){
+            qtdRefri.innerHTML = `
+            ${totalRefrigerante}
+            `;
+        }
+        if (totalRefrigerante >= 500){
+            qtdRefri.innerHTML = `
+            ${totalRefrigerante} Cuidade com a diabetes!
+            `;
+        }
+    }
+
+</script>
