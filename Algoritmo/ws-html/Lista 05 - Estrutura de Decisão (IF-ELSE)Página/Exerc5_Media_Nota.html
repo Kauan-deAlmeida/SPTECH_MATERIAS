@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 05</title>
+    <!-- 5. Crie um programa o qual: 
+         a) Solicite 2 notas de um aluno 
+         b) Ao clicar em "Verificar situação", calcule sua média e... 
+         c) Caso a média seja a partir de 6, exiba "Parabéns, aprovado!" 
+         d) Caso a média seja menor que 6, exiba "Tente outra vez..."-->
+</head>
+<body>
+    Informe a primeira nota:
+        <input type="text" id="input_primeira_nota"><br>
+    Informe a segunda nota:
+        <input type="text" id="input_segunda_nota"><br>
+    <button onclick="situação()">Verificar situação</button>
+    <div id="mostrarMedia"></div>
+    
+</body>
+</html>
+
+<script>
+    function situação(){
+        var nota1 = Number(input_primeira_nota.value)
+        var nota2 = Number(input_segunda_nota.value)
+        var media = (nota1 + nota2) / 2;
+
+        if(media < 6){
+            mostrarMedia.innerHTML = `
+            Tente outra vez...
+            `
+        }
+        else{
+            mostrarMedia.innerHTML = `
+            Parabéns, aprovado!
+            `
+        }   
+    }
+</script>

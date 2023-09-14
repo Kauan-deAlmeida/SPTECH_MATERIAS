@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 04</title>
+    <!-- 4. Crie um programa o qual: 
+         a) Solicita a frequência do aluno 
+         b) Ao clicar em "Analisar frequência", deve aparecer, abaixo dele: 
+         A imagem de um turista, caso a frequência for menor que 50 OU 
+         A imagem de um aluno estudioso, caso a frequência for a partir de 50 -->
+</head>
+<body>
+    Informe a frequencia do aluno:
+        <input type="text" id="input_frequencia_aluno">
+    <button onclick="analisarFrequencia()">Analisar frequência</button>
+    <div id="mostrarResultado"></div>
+    <img src="" alt="">
+</body>
+</html>
+
+<script>
+    function analisarFrequencia(){
+        var frequenciaAluno = Number(input_frequencia_aluno.value);
+        
+        if(frequenciaAluno < 50){
+            mostrarResultado.innerHTML = `
+            <img src="https://blog.gazinatacado.com.br/wp-content/uploads/2016/04/perfil-turista-brasileiro-03.png" alt="foto">
+            `
+        }
+        else{
+            mostrarResultado.innerHTML = `
+            <img src="https://img.freepik.com/vetores-premium/estudante-caminhando-para-a-escola-com-mochila-escolar_679557-1928.jpg?w=360" alt="foto">
+            `
+        }
+    }   
+
+</script>

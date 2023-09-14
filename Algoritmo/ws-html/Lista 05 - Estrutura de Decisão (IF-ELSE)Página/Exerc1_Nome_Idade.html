@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 1. Criar um programa que auxilie uma Autoescola a identificar possíveis novos alunos. 
+         a) Solicite o nome e a idade de uma pessoa; 
+         b) Ao clicar no botão "Avaliar aluno", se a pessoa tiver 18 anos ou mais emita a mensagem 
+         "FULANO vamos tirar a CNH?", caso contrário emita a mensagem "FULANO vai jogar PlayStation!"; -->
+</head>
+<body>
+    Informe o nome do aluno:
+        <input id="nome_aluno_novo"><br>
+    Informe a idade do aluno:
+        <input type="number" id="idade_aluno_novo"><br>
+    <button onclick="exibirAluno()">Avaliar aluno</button>
+    <div id="mostrarResultado"></div>
+</body>
+</html>
+
+<script>
+    function exibirAluno(){
+        var aluno = nome_aluno_novo.value;
+        var idade = Number(idade_aluno_novo.value);
+        
+        if(idade >= 18){
+            mostrarResultado.innerHTML = `
+            FULANO vamos tirar a CNH?`
+        }
+        else{
+            mostrarResultado.innerHTML = `
+            FULANO vai jogar PlayStation!`
+        }
+    }
+</script>

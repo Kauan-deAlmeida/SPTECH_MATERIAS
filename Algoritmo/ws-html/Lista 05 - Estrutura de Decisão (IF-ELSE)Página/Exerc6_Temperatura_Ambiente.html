@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 06</title>
+    <!-- 6. Crie um programa o qual: 
+         a) Solicita a temperatura do ambiente 
+         b) Ao clicar em "Verificar clima", determine se o clima está: 
+         Apropriada p/ conservar alimento - Caso a temperatura for menor que 10 
+         Inapropriada p/ conservar alimento - Caso a temperatura for a partir de 10 
+         c) Em caso de temperatura apropriada, exiba a figura de um alimento em bom estado. Caso contrário, exiba a imagem de um alimento estragado -->
+</head>
+<body>
+    informe a temperatura do ambiente:
+        <input type="text" id="input_temperatura_ambiente"><br>
+    <button onclick="verificarClima()">Verificar clima</button>
+    <div id="mostrarResultado"></div>
+</body>
+</html>
+
+<script>
+    function verificarClima(){
+        var temperatura = Number(input_temperatura_ambiente.value);
+        
+        if(temperatura < 10){
+            mostrarResultado.innerHTML = `
+            <img src="https://greenpng.com/wp-content/uploads/2023/04/Desenho-de-alimentos-saudaveis-PNG.png" alt="foto alimento saldavel">
+            `
+        }
+        else{
+            mostrarResultado.innerHTML = `
+            <img src="https://img.freepik.com/vetores-gratis/conjunto-de-desenhos-animados-de-comida-podre-de-leite-organico-mofado-estragado-e-ilustracao-vetorial-isolada-de-produtos-de-carne_1284-81905.jpg?w=2000" alt="foto de alimento estragado">
+            `
+        }
+    }
+
+</script>
