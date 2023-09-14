@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio if</title>
+</head>
+
+<body>
+    <input type="number" id="input_x0">
+    <input type="number" id="input_y0">
+    <input type="number" id="input_x1">
+    <input type="number" id="input_y1"><br>
+    <input type="number" id="input_l_x0">
+    <input type="number" id="input_l_y0">
+    <input type="number" id="input_l_x1">
+    <input type="number" id="input_l_y1">
+    <button onclick="colisao()">Verificar se interceptam</button>
+    <div id="resultado"></div>
+</body>
+
+</html>
+
+<script>
+    function colisao() {
+        var x0 = Number(input_x0.value);
+        var y0 = Number(input_y0.value);
+        var x1 = Number(input_x1.value);
+        var y1 = Number(input_y1.value);
+        var l_x0 = Number(input_l_x0.value);
+        var l_y0 = Number(input_l_y0.value);
+        var l_x1 = Number(input_l_x1.value);
+        var l_y1 = Number(input_l_y1.value);
+        var colisao = 0;
+
+        if (l_x0 <= x1) {
+            if (l_y0 <= y1) {
+                if (l_x1 >= x0) {
+                    if (l_y1 >= y0) {
+                        colisao = 1;
+                    }
+                }
+            }
+        }
+        else{
+        resultado.innerHTML = `
+            ${x0} ${y0} ${x1} ${y1}<br>
+            ${l_x0} ${l_y0} ${l_x1} ${l_y1}<br>
+            ${colisao}
+            `
+        }    
+    }
+</script>
