@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 06</title>
+    <!-- 6. Crie um programa o qual: 
+         a) Pergunte qual time grande São Paulo o usuário torce. 
+         b) Ao clicar em "Fale sobre esse time", exiba abaixo: 
+         "Salve o Corinthians" com fundo preto e letra branca, se for Corinthians 
+         "Salve o alviverde imponente" com fundo verde e letra branca, se for Palmeiras 
+         "Agora quem dá a bola é o Santos" com fundo branco e letra preta, se for Santos 
+         "Salve o Tricolor paulista" com fundo preto e letra vermelha, se for São Paulo -->
+</head>
+<body>
+    Informe qual time grande São Paulo o usuário torce:
+        <input id="input_time_usuario">
+        <button onclick="exibirTime()">Fale sobre esse time</button>
+        <div id="resulrt"></div>
+</body>
+</html>
+
+<script>
+    function exibirTime(){
+        var time = input_time_usuario.value;
+        
+        if(time == 'corinthians'){
+            resulrt.innerHTML = `<span style="background-color: #000; color: #fff">Salve o Corinthians</span>`;
+        }
+        else if(time == 'Palmeiras'){
+            resulrt.innerHTML = `<span style="background-color: #00ff00; color: #fff">Salve o alviverde imponete</span>`;
+        }
+        else if(time == 'Santos'){
+            resulrt.innerHTML = `<span style="background-color: #fff; color: #000">Agora quem dá a bola é o Santos</span>`;
+        }
+        else if(time == 'São Paulo'){
+            resulrt.innerHTML = `<span style="background-color: #000; color: #ff0000">Salve o Tricolor paulista</span>`;
+        }
+    }
+
+</script>

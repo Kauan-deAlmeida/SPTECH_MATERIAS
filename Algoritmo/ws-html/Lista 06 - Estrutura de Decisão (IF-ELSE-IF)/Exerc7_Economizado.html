@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 07</title>
+    <!-- 7. Crie um programa o qual: 
+         a) Solicite o valor que o usuário tem economizado 
+         b) Ao clicar em "Poder de compra", exibir uma ou várias frases abaixo do dele, conforme estas regras: 
+         b.1) Caso o valor economizado seja igual ou menor que 0: Exibir SOMENTE a frase Nada de compras triste 
+         b.2) Caso o valor economizado for maior que 0 e até 100: Exibir Viajem de ida e volta pra Praia Grande 
+         b.3) Caso o valor economizado seja maior que 100 e menor que 4000: Exibir abaixo da frase de b.2): Uma boa moto usada 
+         b.4) Caso o valor economizado é a partir de 4000: Exibir abaixo da frase de b.3): Mais alguma bobagem legal-->
+</head>
+<body>
+    Valor economizado:
+        <input id="input_valor_economizado">
+        <button onclick="exibirPoderDeCompra()">Poder de compra</button>
+        <div id="resulrt"></div>
+</body>
+</html>
+
+<script>
+    function exibirPoderDeCompra(){
+        var economizado = Number(input_valor_economizado.value);
+
+        if(economizado <= 0){
+            resulrt.innerHTML = `Nada de compras triste`;
+        }
+        else if(economizado <= 100){
+            resulrt.innerHTML = `Viajem de ida e volta pra Praia Grande`;
+        }
+        else if(economizado < 4000){
+            resulrt.innerHTML = `Viajem de ida e volta pra Praia Grande<br> Uma boa moto usada`;
+        }
+        else {
+            resulrt.innerHTML = `Viajem de ida e volta pra Praia Grande<br> Uma boa moto usada<br> Mais alguma bobagem legal`;
+        }
+    }
+
+</script>

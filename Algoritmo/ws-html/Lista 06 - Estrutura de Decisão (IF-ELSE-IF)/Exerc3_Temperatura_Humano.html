@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 3</title>
+    <!-- 3. Para o ser humano, a temperatura é... 
+         Congelante (até menos de 14ºC) 
+         Com Frio (entre 14ºC e 21ºC) 
+         Confortável (mais de 21ºC até 24ºC) 
+         Com Calor (mais de 24ºC até 31ºC) 
+         Calor escaldante (mais de 31ºC) 
+         Crie um programa que, ao ler uma temperatura, exiba uma dessas situações de temperatura. -->
+</head>
+
+<body>
+    Temperatura:
+    <input type="number" id="input_temperatura">
+    <button onclick="exibirTemperatura()">Ambiente</button>
+    <div id="resulrt"></div>
+</body>
+
+</html>
+
+<script>
+    function exibirTemperatura() {
+        var temperatura = Number(input_temperatura.value);
+
+        if(temperatura < 14){
+            resulrt.innerHTML = `Congelante`;
+        }
+        else if(temperatura <= 21){
+            resulrt.innerHTML = `Com Frio`;
+        }
+        else if(temperatura <= 24){
+            resulrt.innerHTML = `Confortável`;
+        }
+        else if(temperatura <= 31){
+            resulrt.innerHTML = `Com Calor`;
+        }
+        else {
+            resulrt.innerHTML = `Calor escadante`;
+        }
+    }
+
+</script>
