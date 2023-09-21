@@ -1,0 +1,14 @@
+ul - Lista sem ordem
+ol - Lista com ordem
+li - conteúdos da lista
+list-style: none; - Limpa as propriedades do conteúdo daquela propriedade
+body{margin: 0} - Limpa a margin do codigo, assim todos os conteúdos ira ficar encostando nas bordas
+border-bottom - deixa só a parte de baixo pintada
+a href="" - passa o caminho para quando clicar a pagina se retirecionar
+target="_blank" - recarrega a pagina em uma nova aba 
+
+
+
+
+
+
