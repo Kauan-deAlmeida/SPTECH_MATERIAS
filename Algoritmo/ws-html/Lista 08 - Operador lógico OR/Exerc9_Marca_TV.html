@@ -31,24 +31,20 @@
         var marca = input_marca.value;
         var preco = Number(input_preco_tv.value);
 
-        if(marca == `Samsung` || marca ==`LG`){
-            if(preco < 800 || preco > 2000){
-                resulrt.innerHTML = `TV fora da faixa de preço<br>`;
-                if(preco < 800){
-                    resulrt.innerHTML += `Preço baixo demais!`;
-                }
-                else{
-                    resulrt.innerHTML += `TV cara demais, infelizmente`;
-                }
+        if(preco < 800 || preco > 2000){
+            resulrt.innerHTML = `TV fora da faixa de preço<br>`;
+            if(preco < 800){
+                resulrt.innerHTML += `Preço baixo demais!`;
             }
             else{
-                resulrt.innerHTML = `Essa TV pode entrar na sua lista!`;
-            }            
+                resulrt.innerHTML += `TV cara demais, infelizmente`;
+            }
         }
         else if(marca == 'Mondial' || marca == 'Britânia'){
-            if(preco >= 800 && preco <= 2000){
-                resulrt.innerHTML = `Na faixa de preço, porém marca não confiável`; 
-            }            
+            resulrt.innerHTML = `Na faixa de preço, porém marca não confiável`;
+        }
+        else{
+            resulrt.innerHTML = `Essa TV pode entrar na sua lista!`;
         }
     }
 
