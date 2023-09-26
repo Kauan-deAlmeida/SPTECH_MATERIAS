@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 2) Crie um programa em HTML/JS o qual:
+        a) Pergunte qual o salário do usuário
+        b) Tenha um botão "Confirmar salário". Ao ser clicado, ele deixe aparecendo na tela uma frase assim "Grana atual: R$X"
+        c) Tenha um botão "Pagar conta de 100", que, ao ser clicado, ele reduza a "Grana atual" em 100 e atualize essa informação na tela
+        d) Tenha um botão "Pagar conta de 500", que, ao ser clicado, ele reduza a "Grana atual" em 500 e atualize essa informação na tela
+        e) Tenha um botão "Ganhar 2000 na loteria", que, ao ser clicado, ele aumente a "Grana atual" em 2000 e atualize essa informação na tela -->
+</head>
+<body>
+    Salário do usuário:
+        <input id="input_salario"><br>
+        <button onclick="exibirConfirmarSalario()">Confirmar salário</button ><br>
+        <button onclick="exibirPagarConta()">Pagar conta de 100</button ><br>
+        <button onclick="exibirContaPagar2()">Pagar conta de 500</button ><br>
+        <button onclick="exibirGanhar()">Ganhar 2000 na loteria</button ><br>
+        <div id="resulrt"></div>
+    </body>
+</html>
+
+<script>
+    var salario = 0;
+
+    function exibirConfirmarSalario(){
+        salario = Number(input_salario.value);
+        resulrt.innerHTML = `Grana atual: R$${salario}`;
+    }
+    function exibirPagarConta(){
+        salario -= 100;
+        resulrt.innerHTML = `Grana atual: R$${salario}`;
+    }
+    function exibirContaPagar2(){
+        salario -= 500;
+        resulrt.innerHTML = `Grana atual: R$${salario}`;
+    }
+    function exibirGanhar(){
+        salario += 2000
+        resulrt.innerHTML = `Grana atual: R$${salario}`;
+    }
+</script>
