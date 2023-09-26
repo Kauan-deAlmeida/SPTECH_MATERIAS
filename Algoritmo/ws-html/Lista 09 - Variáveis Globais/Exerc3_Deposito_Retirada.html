@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 03</title>
+    <!-- 3) Tio Patinhas está ensinando seus netos a guardar dinheiro; Ajude-o criando um programa em HTML/JS o qual:
+         a) Exiba na tela, logo de início, na cor azul:
+         Total guardado no cofrinho: R$0
+         Depósitos efetuados: 0
+         Retiradas efetuadas: 0
+        
+         b) Ao clicar num botão "Depositar 0,50", o valor depositado aumente em R$0,50 e a quantidade de depósitos aumente em 1. Atualize essas informações na tela;
+         c) Ao clicar num botão "Depositar 2,00", o valor depositado aumente em R$2,00 e a quantidade de depósitos aumente em 1. Atualize essas informações na tela;
+         d) Ao clicar num botão "Retirar 0,50" o valor depositado é diminuído em R$0,50 e a quantidade de retiradas aumenta em 1. Atualize essas informações na tela;
+         e) Ao clicar num botão "Retirar" o valor depositado é diminuído de acordo com o campo "Valor", disponível na tela.-->
+</head>
+<body>
+    Total guardado no cofrinho: R$<span id="span_guardado" style="color: blue;"><u>0</u></span><br>
+    Depósitos efeturados: <span id="span_deposito" style="color: blue;"><u>0</u></span><br>
+    Retiradas efetuadas: <span id="span_retirada" style="color: blue;"><u>0</u></span><br>
+
+    <button onclick="exibirDepositar()">Depositar 0.50</button>
+    <button onclick="exibirDepositarOutroValor()">Depositar 2.00</button>
+    <button onclick="exibirRetirada()">Retirar 0.50</button><br>
+    
+    valor:
+    <input id="input_valor">
+    <button onclick="exibirRetiradaNova()">Retirar</button>
+
+</body>
+</html>
+
+<script>
+    var guardado = 0;
+    var deposito = 0;
+    var retirada = 0;
+
+    function exibirDepositar(){
+        guardado += 0.5;
+        deposito += 1;
+        span_deposito.innerHTML = deposito;
+        span_guardado.innerHTML = guardado;
+    }
+
+    function exibirDepositarOutroValor(){
+        guardado += 2.0;
+        deposito += 1;
+        span_deposito.innerHTML = deposito;
+        span_guardado.innerHTML = guardado;
+    }
+    function exibirRetirada(){
+        guardado -= 0.5;
+        retirada += 1;
+        span_retirada.innerHTML = retirada;
+        span_guardado.innerHTML = guardado;
+    }
+    function exibirRetiradaNova(){
+        var valorRedirada = Number(input_valor.value);
+        guardado -= valorRedirada;
+        retirada += 1;
+        span_retirada.innerHTML = retirada;
+        span_guardado.innerHTML = guardado;
+    }
+</script>
