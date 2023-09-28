@@ -1,0 +1,24 @@
+    length;
+    startsWith("a");
+    endsWith(".com");
+    frase[0];    
+    indexOf();
+    length -1;
+    toUpperCase();
+    toLowerCase();
+    replace();
+    replaceAll();
+
+    if(frase.startsWith("a") == true){
+      span_comeca_a.innerHTML = `Sim`;
+    }
+     else{
+      span_comeca_a.innerHTML = `Não`;
+    }
+
+    if(frase.endsWith("e") == true){
+      span_termina_e.innerHTML = `Sim`;
+    }
+    else{
+      span_termina_e.innerHTML = `Não`;
+    }
