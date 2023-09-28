@@ -1,0 +1,101 @@
+sul - Lista sem ordem
+ol - Lista com ordem
+li - conteúdos da lista
+list-style: none; - Limpa as propriedades do conteúdo daquela propriedade
+body{margin: 0} - Limpa a margin do codigo, assim todos os conteúdos ira ficar encostando nas bordas
+border-bottom - deixa só a parte de baixo pintada
+a href="" - passa o caminho para quando clicar a pagina se retirecionar
+target="_blank" - recarrega a pagina em uma nova aba 
+
+header - parte do topo do site;
+containt - conteúdos dentro do topo do site;
+banner - parte central do site; 
+container - conteúdo dentro da parte central do site;
+social - 
+boxes - parte de baixo do centro, onde fica as caixas; 
+box - conteúdos dentro das caixas do boxe;
+footer - rodape
+version - 
+
+p>lorem</p> - texto para usar como exemplo caso não tenha o que colocar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
