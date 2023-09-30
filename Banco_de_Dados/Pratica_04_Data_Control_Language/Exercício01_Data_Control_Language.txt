@@ -1,0 +1,99 @@
+Microsoft Windows [versão 10.0.19045.3448]
+(c) Microsoft Corporation. Todos os direitos reservados.
+
+C:\Users\kauan>D:
+
+D:\>cd \Program Files\MySQL\MySQL Server 8.0\bin
+
+D:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.34 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database sprint1;
+Query OK, 1 row affected (0.40 sec)
+
+mysql> use sprint1;
+Database changed
+mysql> create table professor(
+    -> idProfessor int primary key auto_increment,
+    -> nomeProfessor varchar(50),
+    -> sobrenome varchar(30),
+    -> especialidade1 varchar(40),
+    -> especialidade2 varchar(40));
+Query OK, 0 rows affected (1.74 sec)
+
+mysql> create table disciplina(
+    -> idDisciplina int primary key auto_increment,
+    -> nomeDisc varchar(45),
+    -> fkIdProfessor int,
+    -> constraint fkProfessor foreign key (fkIdProfessor) references professor(idProfessor));
+Query OK, 0 rows affected (1.54 sec)
+
+mysql> insert into professor values
+    -> (null, 'Viviam', 'Silva', 'Banco de dados', 'Algoritmo'),
+    -> (null, 'Caio', 'Santos', 'Algoritmo', 'Arq.Comp'),
+    -> (null, 'Eduardo', 'Silva', 'Arq.Comp', 'Algoritmo'),
+    -> (null, 'Fernando', 'Brandão', 'Pesquisa e inovação', 'Banco de dados'),
+    -> (null, 'Monica', 'Herrero', 'Tecnologia da informação', 'Pesquisa e inovação'),
+    -> (null, 'Marcelo', 'Souza', 'Banco de dados', 'Algoritmo');
+Query OK, 6 rows affected (1.55 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> insert into disciplina values
+    -> (null, 'Banco de dados', 1),
+    -> (null, 'Algoritmo', 2),
+    -> (null, 'Arq.Comp', 3),
+    -> (null, 'Pesquisa e inovação', 4);
+Query OK, 4 rows affected (1.66 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from professor join disciplina on idProfessor = fkIdProfessor;
++-------------+---------------+-----------+---------------------+----------------+--------------+---------------------+---------------+
+| idProfessor | nomeProfessor | sobrenome | especialidade1      | especialidade2 | idDisciplina | nomeDisc            | fkIdProfessor |
++-------------+---------------+-----------+---------------------+----------------+--------------+---------------------+---------------+
+|           1 | Viviam        | Silva     | Banco de dados      | Algoritmo      |            1 | Banco de dados      |             1 |
+|           2 | Caio          | Santos    | Algoritmo           | Arq.Comp       |            2 | Algoritmo           |             2 |
+|           3 | Eduardo       | Silva     | Arq.Comp            | Algoritmo      |            3 | Arq.Comp            |             3 |
+|           4 | Fernando      | Brandão   | Pesquisa e inovação | Banco de dados |            4 | Pesquisa e inovação |             4 |
++-------------+---------------+-----------+---------------------+----------------+--------------+---------------------+---------------+
+4 rows in set (1.68 sec)
+
+mysql> select disciplina.nomeDisc, professor.nomeProfessor from disciplina join professor on fkIdProfessor = idProfessor;
++---------------------+---------------+
+| nomeDisc            | nomeProfessor |
++---------------------+---------------+
+| Banco de dados      | Viviam        |
+| Algoritmo           | Caio          |
+| Arq.Comp            | Eduardo       |
+| Pesquisa e inovação | Fernando      |
++---------------------+---------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from professor join disciplina on idProfessor = fkIdProfessor where sobrenome = 'Silva';
++-------------+---------------+-----------+----------------+----------------+--------------+----------------+---------------+
+| idProfessor | nomeProfessor | sobrenome | especialidade1 | especialidade2 | idDisciplina | nomeDisc       | fkIdProfessor |
++-------------+---------------+-----------+----------------+----------------+--------------+----------------+---------------+
+|           1 | Viviam        | Silva     | Banco de dados | Algoritmo      |            1 | Banco de dados |             1 |
+|           3 | Eduardo       | Silva     | Arq.Comp       | Algoritmo      |            3 | Arq.Comp       |             3 |
++-------------+---------------+-----------+----------------+----------------+--------------+----------------+---------------+
+2 rows in set (0.10 sec)
+
+mysql> select professor.especialidade1, disciplina.nomeDisc from professor join disciplina on idProfessor = fkIdProfessor where nomeProfessor = 'Viviam' order by especialidade1;
++----------------+----------------+
+| especialidade1 | nomeDisc       |
++----------------+----------------+
+| Banco de dados | Banco de dados |
++----------------+----------------+
+1 row in set (1.52 sec)
+
+mysql>

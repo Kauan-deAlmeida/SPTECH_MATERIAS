@@ -1,0 +1,79 @@
+Microsoft Windows [versão 10.0.19045.3448]
+(c) Microsoft Corporation. Todos os direitos reservados.
+
+C:\Users\kauan>d:
+
+D:\>cd \Program Files\MySQL\MySQL Server 8.0\bin
+
+D:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 8.0.34 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database sprint2;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use sprint2;
+Database changed
+mysql> create table curso(
+    -> idCurso int primary key auto_increment,
+    -> nomeCurso varchar(50),
+    -> sigla char(3),
+    -> coordenador varchar(45));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create table aluno(
+    -> idAluno int primary key auto_increment,
+    -> nomeAluno varchar(45),
+    -> turma varchar(45),
+    -> ra char(8),
+    -> fkidCurso int,
+    -> constraint fkCurso foreign key (fkIdCurso) references curso(idCurso));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into curso values
+    -> (null, 'Analise e desenvolvimento de sistemas', 'ADS', 'Gerson'),
+    -> (null, 'Sistema da informação', 'SIS', 'Leonardo'),
+    -> (null, 'Ciencia da computação', 'CCO', 'Rafael');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> insert into aluno values
+    -> (null, 'Kevin Peters', '1CCOA', '01232001', 3),
+    -> (null, 'Gabriel Guedes', '1SISA', '01232081', 2),
+    -> (null, 'Kauan de Almeida', '1ADSA', '0123072', 1);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from curso join aluno on idCurso = fkIdCurso;
++---------+---------------------------------------+-------+-------------+---------+------------------+-------+----------+-----------+
+| idCurso | nomeCurso                             | sigla | coordenador | idAluno | nomeAluno        | turma | ra       | fkidCurso |
++---------+---------------------------------------+-------+-------------+---------+------------------+-------+----------+-----------+
+|       1 | Analise e desenvolvimento de sistemas | ADS   | Gerson      |       3 | Kauan de Almeida | 1ADSA | 0123072  |         1 |
+|       2 | Sistema da informação                 | CCO   | Leonardo    |       1 | Kevin Peters     | 1SISA | 01232001 |         3 |
+|       3 | Ciencia da computação                 | SIS   | Rafael      |       2 | Gabriel Guedes   | 1CCOA | 01232081 |         2 |
++---------+---------------------------------------+-------+-------------+---------+------------------+-------+----------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select curso.nomeCurso, aluno.turma from curso join aluno on idCurso = fkIdCurso where idAluno = 2;
++-----------------------+-------+
+| nomeCurso             | turma |
++-----------------------+-------+
+| Ciencia da computação | 1CCOA |
++-----------------------+-------+
+1 row in set (0.00 sec)
+
+mysql> alter table curso add constraint siglaCheck check(sigla in('CCO', 'SIS', 'ADS'));
+Query OK, 3 rows affected (0.85 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql>
