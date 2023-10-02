@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Informe o nome de usuario:
+        <input type="text" id="usuario"><br>
+    Informe o ultimo reino que esteve se aventurando:
+        <input type="text" id="reino_informado"><br>
+    Informe a sua idade:
+        <input type="number" id="idadeUsuario" placeholder="0 até 1000" max="1000" min="0"><br>
+    Informe a quantidade de inimigos derrotados:
+        <input type="number" id="inimigos_derrotados" min="0"><br>
+    Informe a quantidade de moedas de ouro que o usuário tem:
+        <input type="number" id="qtdMoedasOuro" min="0"><br>
+    <button onclick="iniciarExploracao()">Iniciar exploração</button>
+    <div id="reinoFogo"></div>
+    <span id="reinoGelado"></span>
+    <p id="reinoGeleca"></p>
+    <i id="reinoCaroco"></i>
+    <b id="reinoVampiro"></b>
+</select>
+</body>
+</html>
+
+<script>
+    function iniciarExploracao(){
+        var nome = usuario.value;
+        var reino = reino_informado.value;
+        var idade = Number(idadeUsuario.value);
+        var qtdInimigosDerrotados = Number(inimigos_derrotados.value);
+        var qtdMoedas = Number(qtdMoedasOuro.value);
+
+
+        var acrescimoReinoFogo = (qtdMoedas * 0.08);
+        var somaMoedasFogo = qtdMoedas + acrescimoReinoFogo;
+        
+        var perdaReinoGelado = (qtdMoedas * 0.13);
+        var valorMoedasGelado = qtdMoedas - perdaReinoGelado;
+
+        var perdaReinoGeleca = (qtdMoedas * 0.31);
+        var valorMoedasGeleca = qtdMoedas - perdaReinoGeleca + 2000;
+
+        var acrescimoReinoCaroco = (qtdMoedas * 28.6) / 100;
+        var valorMoedasCaroco = qtdMoedas + acrescimoReinoCaroco;
+
+        var acrescimoReinoVampiro = qtdMoedas + (qtdMoedas * 62.98) / 100;
+        var perdaReinoVampiro = (acrescimoReinoVampiro * 87.12) / 100;
+        var valorMoedasVampro = acrescimoReinoVampiro - perdaReinoVampiro;
+
+        if(reino == "doce"){
+            if(qtdMoedas > 80){
+                if(idade >= 10){
+                    reinoFogo.innerHTML = `
+                    “Olá <b>${nome}</b>, que bom te ver por aqui. 
+                    Ao entrar no reino de fogo o seu dinheiro ganhará um acréscimo de 8% em moedas de ouro 
+                    que será <b>${acrescimoReinoFogo}</b> moedas, 
+                    sendo assim o valor total do seu dinheiro agora será de <b>${somaMoedasFogo}</b> moedas” 
+                    `
+                    alert(`Tome cuidado para não se apaixonar pela princesa de fogo!`);
+                }
+            }
+        }
+        if(reino == "fogo"){
+            if(qtdMoedas >= 500){
+                if(idade < 14){
+                    reinoGelado.innerHTML = `
+                                “Olá <b>${nome}</b>, que bom te ver por aqui. 
+                                Ao entrar no reino de gelo o seu dinheiro sofrerá uma perda de 13% em moedas
+                                de ouro que será <b>${perdaReinoGelado}</b> moedas, 
+                                sendo assim o valor total do seu dinheiro agora será de <b>${valorMoedasGelado}</b> moedas”  
+                                
+                                `
+                                alert(`Dê um olá ao Gunter por ele ser um pinguim maneiro`);
+                }
+            }
+        }
+        if(reino == "gelado"){
+            if(qtdMoedas <= 5000){
+                if(qtdMoedas >= 3000){
+                    if(idade <= 17){
+                        if(idade >= 15){
+                            if(qtdInimigosDerrotados < 60){
+                                reinoGeleca.innerHTML = `
+                                “Olá <b>${nome}</b>, que bom te ver por aqui. 
+                                Ao entrar no reino de geleca o seu dinheiro sofrerá uma perda de 31% em moedas de ouro
+                                que será <b>${perdaReinoGeleca}</b> moedas, 
+                                porém haverá um acréscimo de 2000 moedas de ouro, 
+                                sendo assim o valor total do seu dinheiro agora será de <b>${valorMoedasGeleca}</b> moedas” 
+                                `                                                           
+                                alert(`Tome cuidado com as amoebas que surgirem pelo caminho`);
+                            }
+                        }
+                    }
+                }
+                
+            }
+        }
+        if(reino == "geleca"){
+            if(qtdMoedas <= 8999){
+                if(qtdMoedas >= 5001){
+                    if(idade <= 32){
+                        if(idade >= 19){
+                            if(qtdInimigosDerrotados <= 150){
+                                if(qtdInimigosDerrotados >= 100){
+                                    reinoCaroco.innerHTML = `
+                                    “Olá <b>${nome}</b>, que bom te ver por aqui. 
+                                    Ao entrar no reino de caroço o seu dinheiro ganhará um acréscimo de 28.6%
+                                    em moedas de ouro que será <b>${acrescimoReinoCaroco}</b> moedas, 
+                                    sendo assim o valor total do seu dinheiro agora será de <b>${valorMoedasCaroco}</b> moedas”
+                                    `
+                                    alert(`Mande um abraço para a princesa caroço`);
+                                }
+                            }
+                        }
+                    }
+                }
+                
+            }
+        }
+        if(reino == "caroço"){
+            if(qtdMoedas > 9000){
+                if(qtdInimigosDerrotados >= 200){
+                    if(idade <= 1000){
+                        if(idade >= 754){
+                           reinoVampiro.innerHTML = `
+                           “Olá ${nome}, que bom te ver por aqui. 
+                            Ao entrar no reino dos vampiros o seu dinheiro ganhará um acréscimo de 62.98% 
+                            em moedas de ouro e perderá desse total 87.12%
+                            em moedas de ouro que será o equivalente a ${perdaReinoVampiro} moedas, 
+                            sendo assim o valor total do seu dinheiro agora será de ${valorMoedasVampro} moedas”
+                           `
+                           alert(`A cor vermelha vai salvar a sua vida nesse lugar`);
+                        }
+                    }
+                }
+                
+            }
+        }
+        if(reino == "vampiro"){
+            alert(`Parabéns, você concluiu com maestria todos os reinos`);
+        }
+        else{
+            alert(`Você não pode ir para o reino <b>${reino}</b> pois você está <b>${reino}</b>`);
+        }
+    }
+
+</script>
