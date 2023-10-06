@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 5. Crie um programa o qual: 
+         a) Ao clicar num botão "Números cabalísticos"... 
+         c) Exiba, debaixo do botão, os números de 1 a 30, um embaixo do outro, PORÉM, 
+         não devem aparecer os números cabalísticos 3, 4, 7, 10 e 12.  
+         OBS: não se atenha ao termo "cabalístico", o que importa é somente travar essa sequência de números! -->
+</head>
+<body>
+    <button onclick="exibirNumeros()">Números cabalísticos</button>
+    <div id="resulrt"></div>
+</body>
+</html>
+
+<script>
+    function exibirNumeros(){
+        var repetir = 1;
+
+        resulrt.innerHTML = ``;
+        while(repetir <= 30){
+            if(repetir != 3 && repetir != 4 && repetir != 7 && repetir != 10 && repetir != 12){
+                resulrt.innerHTML += repetir + `<br>`;  
+            }
+        
+            repetir +=1;
+        }
+    }
+
+</script>
