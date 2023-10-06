@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 10</title>
+    <!-- 10. Crie um programa o qual: 
+         a) Solicite um intervalo crescente de valores numéricos  
+         b) Ao clicar num botão "S2 Pares"... 
+         c) Exiba, debaixo do botão, todos os números pares contidos no intervalo. -->
+</head>
+<body>
+    Informe um valor:
+    <input type="text" id="input_primeiro">
+    informe um segundo valor:
+    <input type="text" id="input_segundo">
+    <button onclick="exibir()">S2 Pares</button>
+    <div id="resulrt"></div>
+</body>
+</html>
+
+<script>
+    function exibir(){
+        var primeiro = Number(input_primeiro.value);
+        var segundo = Number(input_segundo.value);
+
+        var repetir = primeiro;
+
+        resulrt.innerHTML = ``;
+        while (repetir <= segundo){
+            if(repetir % 2 == 0){  
+                resulrt.innerHTML += repetir + `<br>`; 
+            }
+            repetir += 1;
+        }
+    }
+
+</script>

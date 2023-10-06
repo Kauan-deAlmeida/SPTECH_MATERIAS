@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 08</title>
+    <!-- 8. Crie um programa o qual: 
+         a) Receba um número (tem que estar entre 0 e 200);
+         b) Ter um botão chamado "Viva o 7!" 
+         c) Ao clicar nesse botão, devem aparecer todos os múltiplos de 7 entre 0 e o número informado em a)  -->
+</head>
+<body>
+   Receber um número:
+    <input type="number" min="0" max="200" id="input_receber_numero"> 
+    <button onclick="exibirBtn()">Viva o 7!</button>
+    <div id="resulrt"></div>
+</body>
+</html>
+
+<script>
+    function exibirBtn(){
+        var numero = Number(input_receber_numero.value);
+        var repetir = 0;
+
+        resulrt.innerHTML = ``;
+        while(repetir <= numero){
+            resulrt.innerHTML += repetir + `<br>`;
+            repetir += 7;
+        }
+    }
+
+</script>
+

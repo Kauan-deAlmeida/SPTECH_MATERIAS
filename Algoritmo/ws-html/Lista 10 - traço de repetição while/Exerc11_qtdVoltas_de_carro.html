@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 11</title>
+    <!-- 11. Crie um programa o qual: 
+         a) Pergunte ao usuário quantas voltas um carro dará numa corrida 
+         b) Ao clicar num botão "Iniciar corrida!"... 
+         c) Exiba, debaixo do botão, frases como estas: 
+         Carro dando a 1ª volta 
+         Carro dando a 2ª volta 
+         Carro dando a 3ª volta 
+         d) Até que o carro "termine" a corrida. Nesse caso, exiba abaixo de tudo, somente 1 vez, a frase: 
+         Corrida finalizada!  -->
+</head>
+<body>
+   Quantas voltas um carro dará numa corrida:
+    <input type="text" id="input_quantas_voltas"> 
+    <button onclick="exibir()">Iniciar corrida!</button>
+    <div id="resulrt"></div>
+</body>
+</html>
+
+<script>
+    function exibir(){
+        var voltas = Number(input_quantas_voltas.value);
+
+        var repetir = 1;
+        resulrt.innerHTML = ``;
+        while(repetir <= voltas){
+            resulrt.innerHTML += `Carro dando a ${repetir}° volta<br>`;
+            repetir += 1;
+        }
+    }
+
+</script>
