@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 2. Crie um programa o qual: 
+         a) Tenha um botão "Diga algo sobre a matéria de Algoritmos"
+         b) Ao clicar nele, mostre na própria página 7 vezes uma frase a sua escolha, uma abaixo da outra.-->
+</head>
+<body>
+    <button onclick="exibirAlgo()">Diga algo sobre a matéria de Algoritmos</button>
+    <div id="resulrt"></div>
+</body>
+</html>
+
+<script>
+    function exibirAlgo(){
+        var repetir = 1;
+
+        resulrt.innerHTML = ``;
+        while(repetir <= 7){
+            resulrt.innerHTML += `Eu gosto de Algoritmo<br>`;
+            repetir += 1;
+        }
+    }
+
+</script>
