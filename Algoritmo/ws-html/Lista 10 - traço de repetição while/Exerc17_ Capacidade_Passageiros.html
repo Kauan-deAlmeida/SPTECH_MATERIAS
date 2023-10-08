@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 17</title>
+    <!-- 17. Incremente a questão anterior de tal forma que: 
+         a) Também tenha um campo no qual o usuário indique a capacidade de passageiros que o veículo suporta 
+         b) Ao clicar no botão, as frases só começam a mostrar que o passageiro terá que esperar quando a capacidade indicada em a) for excedida. -->
+</head>
+<body>
+    Qual capacidade de passageiros que o veículo suporta:
+        <input type="text" id="input_capacidade_passageiros"> 
+    Quantas pessoa, vão entrar no carro:
+        <input type="text" id="input_quantas_pessoas">
+        <button onclick="exibir()">#Partiu Carona</button>
+        <div id="resulrt"></div>
+</body>
+</html>
+ 
+<script>
+    function exibir(){
+        var capacidade = Number(input_capacidade_passageiros.value);
+        var passageiros = Number(input_quantas_pessoas.value);
+        var repetir = 1;
+
+        resulrt.innerHTML =``;
+        while(repetir <= passageiros){
+            if(repetir == 1){
+                resulrt.innerHTML +=`Entrou o ${repetir}° passageiro (que é o(a) motorista)`;
+            }
+            else if(repetir <= capacidade){
+                resulrt.innerHTML += `<br>Entrou o ${repetir}° passageiro`;
+            }
+            else{
+                resulrt.innerHTML += `<br>O ${repetir}° passageiro terá que esperar!`;
+            }
+
+            repetir += 1;
+        }
+    }
+
+</script>
