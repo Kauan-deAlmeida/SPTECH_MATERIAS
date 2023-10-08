@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 14</title>
+    <!-- 14. Crie um programa que vá contando a idade do usuário e descrevendo sua fase na vida, considerando que: 
+         - Primeira Infância: 0 a 4 anos 
+         - Pré-escolar: + de 4 aos 6 anos 
+         - Segunda Infância: + de 6 aos 10 anos 
+         - Adolescência: + de 10 aos 18 anos 
+         - Adulto: + de 18 até os 50 anos 
+         - Melhor idade: + de 50 anos até 100 anos 
+         - Matusalém: + de 100 anos 
+         Assim, sua página HTML deve solicitar a idade do usuário. 
+         Na medida em que for digitando (pesquise por onkeyup), deve aparecer uma contagem de idade e 
+         indicação de fase da vida abaixo como neste exemplo: 
+         0 anos (Primeira Infância) 
+         1 anos (Primeira Infância) 
+         2 anos (Primeira Infância) 
+         3 anos (Primeira Infância) 
+         4 anos (Primeira Infância) 
+         5 anos (Pré-escolar) 
+         6 anos (Pré-escolar) 
+         7 anos (Segunda Infância) 
+         .... 
+         A última linha deve ser a idade informada.  -->
+</head>
+<body>
+    Idade do usuário:
+        <input type="text" id="input_idade" onkeyup="exibir()">
+        <div id="resulrt"></div>
+</body>
+</html>
+
+<script>
+    function exibir(){
+        var idade = Number(input_idade.value);
+        var repetir = 0;
+        resulrt.innerHTML = ``;
+        while(repetir <= idade){
+            if(repetir <= 4){
+                resulrt.innerHTML += `${repetir} anos (Primeira Infância) <br>`;
+            }   
+            else if(repetir <= 6){
+                resulrt.innerHTML += `${repetir} anos (Pré-escolar)<br>`;
+            }
+            else if(repetir <= 10){
+                resulrt.innerHTML += `${repetir} anos (Segunda Infância)<br>`;
+            }
+            else if(repetir <= 18){
+                resulrt.innerHTML += `${repetir} anos (Adolescência)<br> `;
+            }
+            
+            else if(repetir <= 50){
+                resulrt.innerHTML += `${repetir} anos (Adulto)<br> `;
+            }
+            
+            else if(repetir <= 100){
+                resulrt.innerHTML += `${repetir} anos (Melhor idade)<br> `;
+            }
+            
+            else{
+                resulrt.innerHTML += `${repetir} anos (Matusalém)<br> `;
+            }
+            repetir +=1;
+            if(idade == 0){
+                resulrt.innerHTML = ``;
+            }
+        }
+    }
+
+</script>
