@@ -18,7 +18,7 @@
          b) Ao clicar em "Atazanar a médium", exiba sempre o trecho da canção de 1 elefante, 
          seguido do trecho com 2 elefantes e depois 3... até a quantidade de elefantes indicado em a). 
          Note que a palavra "incomodam" repete-se conforme essa mesma quantidade. 
-         Por exemplo, o se o usuário informar 4 em a), devem aparecer 3 estrofes, como no enunciado da questão,
+         Por exemplo, se o usuário informar 4 em a), devem aparecer 3 estrofes, como no enunciado da questão,
          de "2 elefantes" até "4 elefantes", sempre repetindo a frase do "1 elefante incomoda muita gente" 
          antes de cada estrofe. -->
 </head>
@@ -34,25 +34,26 @@
     function exibir(){
         var elefantes = Number(input_qtd_elefantes.value);
         var repetir = 1;
+        var repetir2 = 1;
+        var repetion = repetir + 3  ;
+        resulrt.innerHTML = ``;
+        while(repetir < elefantes){
+            resulrt.innerHTML += `1 elefante incomoda muita gente!<br>`;
 
-        resulrt.innerHTML += ``;
-        while(repetir <= elefantes){
-            resulrt.innerHTML += `${repetir} elefante incomoda muita gente<br>`;
-
-            while(repetir < elefantes){
-                if(repetir < 1){
-                    resulrt.innerHTML += `${repeitr} elefantes, `;
+            repetir += 1;
+            while(repetir2 <= repetir){
+                if(repetir2 == 1){
+                    resulrt.innerHTML += `${repetir} elefantes, incomodam, `;
                 }
-                else if(repetir < elefantes){
+                else if(repetir2 < repetir){
                     resulrt.innerHTML += `incomodam, `;
                 }
                 else{
-                    resulrt.innerHTML += `incomodam, muito mais!`;
+                    resulrt.innerHTML += `incomodam, muito mais! <br>`;
                 }
-                repetir += 1;
-                
+                repetir2 += 1;
             }
-            repetir += 1;
+            repetir2 = 1;
         }
     }
 </script>
