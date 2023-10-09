@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 02 - logica do circuito</title>
+</head>
+<body>
+    Está chovendo:
+        <input type="checkbox" id="input_chovendo"><br>
+    Tenho dinheiro:
+        <input type="checkbox" id="input_dinheiro"><br>
+    Tenho tempo:
+        <input type="checkbox" id="input_tempo"><br>
+    Gosto de nuggets:
+        <input type="checkbox" id="input_nuggets"><br>
+    <Button onclick="exibir()">McDonnald's</Button>
+    <div id="resulrt"></div>
+</body>
+</html>
+
+<script>
+    function exibir(){
+        var chovendo = input_chovendo.checked;
+        var dinheiro = input_dinheiro.checked;
+        var tempo = input_tempo.checked;
+        var nuggets = input_nuggets.checked;
+
+        if((!chovendo && !dinheiro && tempo && !nuggets) 
+        || (!chovendo && !dinheiro && tempo && nuggets)
+        || (chovendo && !dinheiro && !tempo && !nuggets)
+        || (chovendo && !dinheiro && tempo && nuggets)
+        || (chovendo && dinheiro && tempo && nuggets)){
+            resulrt.innerHTML = `Verdadeiro`;
+        }
+        else{
+            resulrt.innerHTML = `Falso`;
+        }
+    }
+
+</script>
+
