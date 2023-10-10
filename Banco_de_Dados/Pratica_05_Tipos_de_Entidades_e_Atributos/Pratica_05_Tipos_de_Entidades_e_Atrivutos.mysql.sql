@@ -80,7 +80,7 @@ select * from cliente;
 select * from pet join cliente on fkIdCliente = idCliente;
 
 -- Exibir os dados dos pets e dos seus respectivos donos, mas somente de um determinado cliente.
-select * from pet join cliente on fkIdCliente = idCliente where nomeCliente like'Kauan%';
+select pet.*,cliente.nomeCliente as 'Nome responsasvel' from pet join cliente on fkIdCliente = idCliente where nomeCliente like'Kauan%';
 
 -- Excluir algum pet.
 delete from pet where idPet = 102;
@@ -106,7 +106,7 @@ create table pessoa (
 create table gastos(
 	idGasto int primary key auto_increment,
 	dataDoGasto date,
-	valor int,
+	valor decimal(10, 2),
 	descricao varchar(45),
     fkIdPessoa int,
     constraint fkPessoa foreign key (fkIdPessoa) references pessoa(idPessoa));
