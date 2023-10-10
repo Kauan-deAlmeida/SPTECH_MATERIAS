@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 20</title>
+    <!-- 21. Refaça o programa anterior de tal forma que, a cada 3 depósitos o banco dê um bônus de 1% sobre o valor acumulado após
+         o depósito. Ex: 
+         1º Mês: R$ 500.00 
+         2º Mês: R$ 1000.00 
+         3º Mês: R$ 1515.00 
+         4º Mês: R$ 2015.00 
+         5º Mês: R$ 2515.00 
+         6º Mês: R$ 3045.15 
+         Total guardado: R$3045.15 
+         Note que nos meses 3 e 6, o valor aumentou em 1% do total após o depósito.  -->
+</head>
+<body>
+    Quantos depósitos ele fez no banco:
+        <input type="text" id="input_depositos"><br>
+    Qual o valor de cada depósito:
+        <input type="text" id="input_cada_deposito">
+        <button onclick="exibir()">Acompanhar grana</button>
+        <div id="resulrt"></div>
+</body>
+</html>
+
+<script>
+    function exibir(){
+        var depositos = Number(input_depositos.value);
+        var valor = Number(input_cada_deposito.value);
+        var guardado = valor;
+        
+        
+        var repetir = 1;
+        resulrt.innerHTML = ``;
+        while(repetir <= depositos){
+            if(repetir%3 == 0){
+                guardado *= 1.01;
+                resulrt.innerHTML += `${repetir}° Mês: R$ ${guardado}<br>`;
+            }
+            else{
+                resulrt.innerHTML += `${repetir}° Mês: R$ ${guardado}<br>`;
+            }
+            repetir += 1;
+            total = guardado
+            guardado += valor;
+        }       
+        resulrt.innerHTML += `Total guardado: R$${total}<br>`; 
+    }
+
+</script>
