@@ -3,29 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Implementando o CharJS</title>
+    <title>CharJS - PI</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+      body{
+        display: flex;
+        margin: 0;
+        flex-direction: column;
+      }
+      .principal{
+        width: 100%;
+      }
+      .header{
+        background-color: #763a5a;
+        width: 100%;
+        display: flex;
+        
+      }
+      .header .dash{
+        margin-left: 32%;
+        align-items: center;
+      }
+      .header .cbl{
+        margin-left: 70px;
+      }
+      .header h1, h2{
+        color: #fff;
+      }
+
+      .dash{
+        display: flex;
+        float: left;  
+        margin: auto;
+      }
+    </style>
 </head>
-<body style="display: flex">
-   
-  <div>
+<body>
+  <div class="principal">
+
+    <div class="header">
+      <div class="cbl">
+        <img src="../../../SiteVinum/public/assets/imagens/icons8-wine-glass-64(1) 1.png" alt="">
+        <h1>Vinum</h1>
+      </div>
+      <div class="header  dash">
+        <h2>Dashborder</h2>
+      </div>
+    </div>
+    <div>
+    </div>
+  </div>
+  <div class="dash">
+    <div>
       <canvas id="myChartLine" style="position: relative; height:40vh; width:40vw"></canvas>
     </div>
     
     <div>
-        <canvas id="myChart" style="position: relative; height:40vh; width:40vw"></canvas>
+      <canvas id="myChart" style="position: relative; height:40vh; width:40vw"></canvas>
     </div>
-</body>
-
+  </div>
+  </body>
+  
 </html>
 
 <script>
-    const ctx = document.getElementById('myChart');
-    const ctxL = document.getElementById('myChartLine');
-    
-
-    
-    new Chart(ctxL, {
+  const ctx = document.getElementById('myChart');
+  const ctxL = document.getElementById('myChartLine');
+  
+  
+  
+  new Chart(ctxL, {
       type: 'line',
       data: {
         labels: ['12:00',
@@ -54,14 +102,14 @@
       options: {
         scales: {
           y: {
-            suggestedMin: 20,
+            beginAtZero: true
           }
         }
       }
     });
 
     new Chart(ctx, {
-      type: 'bar',
+      type: 'doughnut',
       data: {
         labels: ['Janeiro',
                  'Fevereiro', 
