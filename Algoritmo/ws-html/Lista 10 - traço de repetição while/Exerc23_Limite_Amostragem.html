@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 23. Crie um programa o qual: 
+        a) Receba o limite inferior da amostragem. Esse número que ser maior que 1, caso contrário emitir mensagem explicativa 
+        e não seguir em frente.  
+        b) Receba o limite superior da amostragem. Esse número que ser menor que 100 e maior que o limite inferior (item a), 
+        caso contrário emitir mensagem explicativa e não seguir em frente 
+        c) Receba o número para testar a divisibilidade, esse número tem que estar entre 3 e 10, caso contrário, emitir mensagem explicativa e não seguir em frente. 
+        d) Tenha num botão "Contar" que quando clicado exiba todos os números divisíveis pelo número informado no item c), 
+        desde o limite inferior (item a.) até o limite superior (item b.). Exibir esses números um ao lado do outro separados por uma vírgula e um espaço (, ).  
+        e) Ao final, sem apagar as mensagens anteriores mostre as seguintes mensagens: 
+        QUANTIDADE TOTAL DE NÚMEROS EXIBIDOS: 99 
+        SOMATÓRIO DOS NÚMEROS EXIBIDOS: 999 
+        MÉDIA DOS NÚMEROS EXIBIDOS: 99,99 
+        MAIOR NÚMERO EXIBIDO: 99 
+        MENOR NÚMERO EXIBIDO: 99  -->
+</head>
+<body>
+    Limite inferior da amostragem:
+        <input type="text" id="input_limite_inferior_amostragem"><br>
+    Limite superio da amostragem:
+        <input type="text" id="input_limite_superior_amostragem"><br>
+    Número para testar divisibilidade:
+        <input type="text" id="input_divisibilidade"><br>
+        <button onclick="exibir()">Contar</button>
+        <div id="resulrt"></div>
+</body>
+</html>
+
+<script>
+    function exibir(){
+        var inferior = Number(input_limite_inferior_amostragem.value);
+        var superior = Number(input_limite_superior_amostragem.value);
+        var dvs = Number(input_divisibilidade.value);
+        var numerosExibidos = 0;
+        var somaNuExibirdos = 0;
+        var mediaNuExibidos = 0;
+        var maiorNuExbido = 0;
+        var menorNuExibido = 0;
+        var rep = 1;
+        repetir = 1;
+        var texto = "";
+        if(inferior < 1 || superior > 100 || dvs < 3 || dvs > 10){
+            alert("Valor invalido");
+            resulrt.innerHTML = ``;
+        }
+        else{
+            resulrt.innerHTML = ``; 
+            while(repetir <= superior){
+                if(repetir >= inferior){
+                    if(repetir%dvs == 0){
+                        texto += `, ${repetir}`;
+                        resulrt.innerHTML = texto;
+                        numerosExibidos++;
+                        somaNuExibirdos += repetir;
+                        mediaNuExibidos = somaNuExibirdos / numerosExibidos
+                        maiorNuExbido = repetir;
+                        if(repetir==rep){
+                        menorNuExibido = rep;
+                        rep+=1;
+                        }
+                    }
+                }
+                rep += 1;
+                repetir += 1;
+            }
+            
+            if(texto.startsWith(", ") == true){
+                    resulrt.innerHTML = texto.replace(", ", "");
+            }
+            resulrt.innerHTML += `
+            <br>QUANTIDADE TOTAL DE NÚMEROS EXIBIDOS: ${numerosExibidos} 
+            <br>SOMATÓRIO DOS NÚMEROS EXIBIDOS: ${somaNuExibirdos}
+            <br>MÉDIA DOS NÚMEROS EXIBIDOS: ${mediaNuExibidos}
+            <br>MAIOR NÚMERO EXIBIDO: ${maiorNuExbido}
+            <br>MENOR NÚMERO EXIBIDO: ${menorNuExibido}`;
+        }
+    }
+</script>
