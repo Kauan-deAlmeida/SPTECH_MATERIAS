@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 26. Crie um programa o qual: 
+         a) Solicite um número, que deve estar entre 10 e 500, exibindo alerta de erro caso não atenda os critérios;
+         b) Ao clicar no botão "Somar Pares", deve exibir todos os números pares entre 1 e o número inserido pelo usuário;
+         c) Ao final da listagem, deve exibir a frase "Soma dos pares: X", sendo X a soma de todos os números exibidos; -->
+</head>
+<body>
+    Informe um numero entre 0 e 100:
+        <input type="text" id="input_numero">    
+        <button onclick="exibirSoma()">Somar Pares</button>
+        <div id="resulrt"></div>
+</body>
+</html>
+
+<script>
+    function exibirSoma(){
+        var numero = Number(input_numero.value);
+        var repetir = 10;
+        var soma = 0;
+
+        resulrt.innerHTML = ``;
+        if(numero >= 10 && numero <= 500){
+            while(repetir <= numero){
+                if(repetir % 2 == 0){
+                    resulrt.innerHTML += `${repetir}<br>`;
+                    soma += repetir
+                }
+                repetir += 1;
+                 
+            }
+            resulrt.innerHTML += `Soma dos pares: ${soma}`;
+        }
+        else{
+            alert(`Número fora do intervalo`);
+        }
+    }
+
+</script>
