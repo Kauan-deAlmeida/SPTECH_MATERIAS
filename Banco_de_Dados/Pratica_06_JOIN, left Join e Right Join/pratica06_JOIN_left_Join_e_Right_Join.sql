@@ -95,5 +95,45 @@ on projeto.idProjeto = aluno.fkProjeto;
 
 
 
+-- 2. Fazer a modelagem lógica de um sistema para cadastrar as campanhas de doações que surgiram devido ao Covid-19 e os organizadores dessas campanhas
+-- Cada organizador organiza mais de uma campanha de doação.
+-- Cada campanha de doação é organizada por apenas um organizador.
+-- a) Criar um banco de dados chamado Campanha.
+
+
+-- b) Selecionar esse banco de dados.
+
+
+-- c) Criar as tabelas correspondentes à sua modelagem.
+
+
+-- d) Inserir dados nas tabelas, de forma que exista mais de uma campanha para algum organizador, e mais de um organizador novato sendo orientado por algum organizador mais experiente.
+
+
+-- e) Exibir todos os dados de cada tabela criada, separadamente.
+
+
+-- f) Fazer os acertos da chave estrangeira, caso não tenha feito no momento da criação das tabelas.
+
+
+-- g) Exibir os dados dos organizadores e os dados de suas respectivas campanhas.
+
+
+-- h) Exibir os dados de um determinado organizador (informar o nome do organizador na consulta) e os dados de suas respectivas campanhas.
+
+
+-- i) Exibir os dados dos organizadores novatos e os dados dos respectivos organizadores orientadores.
+
+
+-- j) Exibir os dados dos organizadores novatos e os dados dos respectivos organizadores orientadores, porém somente de um determinado organizador orientador (informar o nome do organizador orientador na consulta).
+
+
+-- l) Exibir os dados dos organizadores novatos, os dados das respectivas campanhas organizadas e os dados dos respectivos organizadores orientadores.
+
+
+-- m) Exibir os dados de um organizador novato (informar o seu nome na consulta), os dados das respectivas campanhas em que trabalha e os dados do seu organizador orientador.
+
+
+
 
 
