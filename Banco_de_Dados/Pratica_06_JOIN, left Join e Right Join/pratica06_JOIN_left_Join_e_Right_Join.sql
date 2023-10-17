@@ -100,40 +100,87 @@ on projeto.idProjeto = aluno.fkProjeto;
 -- Cada campanha de doação é organizada por apenas um organizador.
 -- a) Criar um banco de dados chamado Campanha.
 
-
+create database Campanh;
+    
 -- b) Selecionar esse banco de dados.
-
+use Campanh;
 
 -- c) Criar as tabelas correspondentes à sua modelagem.
-
+create table organizador(
+	idOrganizador int primary key auto_increment,
+    nome varchar(45),
+    rua varchar(50),
+    bairro varchar(45),
+	email varchar(45),	
+    fkOrgEx  int,
+    constraint fkIdOrg foreign key (fkOrgEx) references organizador(idOrganizador))
+    auto_increment = 30;
+    
+create table campanha(
+	idCamp int auto_increment,
+    categoria varchar(45),
+    instituicao varchar(45),
+	dataFinal date,
+    fkOrganizador int,
+    constraint fkIdOrga foreign key (fkOrganizador) references organizador(idOrganizador),
+    primary key (idCamp, fkOrganizador));
 
 -- d) Inserir dados nas tabelas, de forma que exista mais de uma campanha para algum organizador, e mais de um organizador novato sendo orientado por algum organizador mais experiente.
+insert into organizador (nome, rua, bairro, email) values
+	('Bruna Duran', 'Juracy', 'Helida', 'bruna.duran@gmail.com'),
+    ('Kauan de Alemida', 'Tibetania', 'Capuava', 'kauan.almeida@gmail.com'),
+    ('Luis Guilherme', 'Rosa' ,'São Mateus' ,'luis.guilherme@gmail.com');
 
+insert into organizador (nome, rua, bairro, email, fkOrgEx) values
+	('Nicolas Kleyton', 'Meninos', 'Jão pessoa', 'nicolas.kleyton@gmail.com', 30),
+    ('Elvis Bezerra', 'Juracy', 'Helida', 'elvis.bezerra@gmail.com', 31),
+    ('Caique Guilherme', 'Rosa' ,'São Mateus' ,'caique.guilherme@gmail.com', 32);
+
+insert into campanha (categoria, instituicao, dataFinal, fkOrganizador)values
+	('Limpeza', 'Bombril', '2023-11-11', 31),
+    ('Saúde', 'Santa Casa', '2023-12-23', 32),
+    ('Moveis', 'Nova Casa', '2023-12-15', 33),
+    ('Carros', 'BMW', '2024-01-13', 34);
 
 -- e) Exibir todos os dados de cada tabela criada, separadamente.
-
+select * from organizador;
+select * from campanha;
 
 -- f) Fazer os acertos da chave estrangeira, caso não tenha feito no momento da criação das tabelas.
-
-
 -- g) Exibir os dados dos organizadores e os dados de suas respectivas campanhas.
-
+select * from organizador 
+join campanha on idOrganizador = fkOrganizador; 
 
 -- h) Exibir os dados de um determinado organizador (informar o nome do organizador na consulta) e os dados de suas respectivas campanhas.
-
+select * from organizador 
+join campanha on idOrganizador = fkOrganizador
+where idOrganizador = 31; 
 
 -- i) Exibir os dados dos organizadores novatos e os dados dos respectivos organizadores orientadores.
-
+select * from organizador as organizador
+join organizador as experiente
+on organizador.fkOrgEx = experiente.idOrganizador;
 
 -- j) Exibir os dados dos organizadores novatos e os dados dos respectivos organizadores orientadores, porém somente de um determinado organizador orientador (informar o nome do organizador orientador na consulta).
-
+select * from organizador as organizador
+join organizador as experiente
+on organizador.fkOrgEx = experiente.idOrganizador
+where organizador.idOrganizador = 34;
 
 -- l) Exibir os dados dos organizadores novatos, os dados das respectivas campanhas organizadas e os dados dos respectivos organizadores orientadores.
-
+select * from organizador as organizador
+join campanha as camp
+on organizador.idOrganizador = camp.fkOrganizador
+join organizador as experientes
+on organizador.fkOrgEx = experientes.idOrganizador;
 
 -- m) Exibir os dados de um organizador novato (informar o seu nome na consulta), os dados das respectivas campanhas em que trabalha e os dados do seu organizador orientador.
-
-
+select * from organizador as organizador
+join campanha as camp
+on organizador.idOrganizador = camp.fkOrganizador
+join organizador as experientes
+on organizador.fkOrgEx = experientes.idOrganizador
+where organizador.idOrganizador = 34;
 
 
 
