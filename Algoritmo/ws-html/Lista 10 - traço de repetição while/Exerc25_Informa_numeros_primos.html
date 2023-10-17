@@ -20,18 +20,28 @@
 <script>
     function exibirDivisores(){
         var numero = Number(input_numero_usuario.value);
-        var repetir = 1
+        var number = 1;
+        var repetir = 1;
 
         resulrt.innerHTML = ``;
         while(repetir <= numero){
-            if(numero % repetir==0){
-                if(repetir / numero == 1){
-                    resulrt.innerHTML += `O número ${repetir} é um número primo,<br>`;   
+            if(numero % repetir ==0){
+                if(number / repetir == 1 && numero % repetir ==0){
+                    if(number == 2 || number == 3){
+                        resulrt.innerHTML += `${repetir} primo <br>`;
+                    }
+                    else if(number %2 ==0 || number %3 ==0 || number == 1){
+                        resulrt.innerHTML += `${repetir}<br>`;    
+                    }
+                    else{
+                        resulrt.innerHTML += `${repetir} primo <br>`;
+                    }
                 }
                 else{
                     resulrt.innerHTML += `${repetir}<br>`;
                 }
             }
+            number +=1;
             repetir +=1;
         }
     }
