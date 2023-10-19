@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AC2 - Algoritmo</title>
+</head>
+<body>
+    Informe a quantidade de Chakra que o Naruto tem:
+        <input type="text" id="input_chakra_naruto"><br>
+    Informe a quantidade de clones desejada:
+        <input type="text" id="input_qtd_clones"><br>
+    Informe a quantidade de clones por linha:
+        <input type="text" id="input_qtd_clones_linhas"><br>
+        <button onclick="exibirClone()">Criar clones</button>
+        <div id="resulrt"></div>
+</body>
+</html>
+
+<script>
+    function exibirClone(){
+        var chakra = Number(input_chakra_naruto.value);
+        var qtdClones = Number(input_qtd_clones.value);
+        var cloneLinha = Number(input_qtd_clones_linhas.value);
+        var ckGasto = qtdClones * 20;
+        var chakraAtual = chakra - ckGasto;
+        var porcentual_Sobra_Chakra = chakraAtual / chakra * 100;
+        var clones = 1;
+        var clnLinha = 1;
+
+        resulrt.innerHTML = ``;
+        if(chakra >= 20 && chakra <= 5000 && qtdClones >= 0 && qtdClones <= 250 && cloneLinha > 0){
+            if(chakra >= ckGasto){
+
+                while(clones <= qtdClones){
+                    resulrt.innerHTML += `<img style="width: 100px;" src="img/naruto.jpg" alt="Naruto">`;
+                    if(clnLinha == cloneLinha){
+                        resulrt.innerHTML += `<br>`;
+                        clnLinha = 0;
+                    }
+                    clnLinha += 1;
+                    clones +=1;
+                }
+
+                resulrt.innerHTML += 
+                `<br>ANÁLISE DA GERAÇÃO DE CLONES<br>
+                Chakra Inicial: ${chakra} <br>
+                Quantidade de Clones: ${qtdClones}<br> 
+                Sobra de Chakra: ${chakraAtual}<br>`;
+                
+                if(chakraAtual > 1000 || qtdClones > 50 && chakraAtual >= porcentual_Sobra_Chakra){
+                    resulrt.innerHTML += `PROVAVELMENTE VOCÊ VAI GANHAR`;
+                }
+                else if(chakraAtual > 500 || qtdClones >= 20 && qtdClones <= 50 && chakraAtual >= porcentual_Sobra_Chakra){
+                    resulrt.innerHTML += `A LUTA VAI SER MUITO BOA`;
+                }
+                else{
+                    resulrt.innerHTML += `TORÇA PARA O ADVERSÁRIO SER FRAQUINHO`;
+                }
+            }
+            else{
+                alert(`Pouco chakra`);
+            }
+
+        }
+        else{
+            alert(`ERRO NA ENTRADA DE DADOS – Energia tem que ser entre 20 e 5.000. Quantidade de Clones tem que ser entre 0 e 250. Quantidade de Clones por linha tem que ser maior que 0.`);
+        }
+    }
+</script>
