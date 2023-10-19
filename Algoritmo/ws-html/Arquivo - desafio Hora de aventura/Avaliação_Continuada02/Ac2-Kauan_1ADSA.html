@@ -43,15 +43,15 @@
                 }
 
                 resulrt.innerHTML += 
-                `<br>ANÁLISE DA GERAÇÃO DE CLONES<br>
+                `<br><b>ANÁLISE DA GERAÇÃO DE CLONES</b><br>
                 Chakra Inicial: ${chakra} <br>
                 Quantidade de Clones: ${qtdClones}<br> 
                 Sobra de Chakra: ${chakraAtual}<br>`;
                 
-                if(chakraAtual > 1000 || qtdClones > 50 && chakraAtual >= porcentual_Sobra_Chakra){
+                if(chakraAtual > 1000 || qtdClones > 50 && chakraAtual >= porcentual_Sobra_Chakra * 20){
                     resulrt.innerHTML += `PROVAVELMENTE VOCÊ VAI GANHAR`;
                 }
-                else if(chakraAtual > 500 || qtdClones >= 20 && qtdClones <= 50 && chakraAtual >= porcentual_Sobra_Chakra){
+                else if(chakraAtual > 500 || qtdClones >= 20 && qtdClones <= 50 && chakraAtual >= porcentual_Sobra_Chakra * 10){
                     resulrt.innerHTML += `A LUTA VAI SER MUITO BOA`;
                 }
                 else{
