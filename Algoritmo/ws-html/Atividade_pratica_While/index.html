@@ -6,9 +6,10 @@
     <title>Document</title>
 </head>
 <body>
-    Água engarrafada
+    --------------------------Abertura do Quiosque--------------------------<br>
+    Informe a quantidade de água engarrafada do estoque:
         <input type="text" id="input_agua_engarrafada"><br>
-    Coco fechado
+    Informe a quantidade de Coco fechado do estoque:
         <input type="text" id="input_coco_fechado"><br>
     <button onclick="exibirAbrirQuiosque()">Abrir o quiosque</button>
     
@@ -17,9 +18,6 @@
 </html>
 
 <script>
-    function exibirVenda(){
-                    resulrt.innerHTML += `Com a venda de XXXX de YYYY o saldo no estoque é de ZZZZ`;
-                }
     function exibirAbrirQuiosque(){
         var aguaEngarrafada = Number(input_agua_engarrafada.value);
         var cocoFechado = Number(input_coco_fechado.value);
@@ -38,10 +36,16 @@
             else if(cocoFechado >= 200 && cocoFechado <= 2000){
                 alert(`Compre mais cocos`);            
             }
-                resulrt.innerHTML = `${aguaEngarrafada}<br>${cocoFechado}<br> 
+                resulrt.innerHTML += `--------------------------Estoque Inicial----------------------------------<br>`;
+                resulrt.innerHTML += `${aguaEngarrafada}<br>${cocoFechado}<br> 
                 <input id="input_venda_agua"><br>
                 <input id="input_venda_coco"><br>
                 <button onclick="exibirVenda()">Registrar a Venda</button><br>`;
         }
+    }
+    function exibirVenda(){
+        var vendaAgua = Number(input_venda_agua.value);
+        var vendaCoco = Number(input_venda_coco.value);
+        resulrt.innerHTML += `Com a venda de agua de coco o saldo no estoque é de ZZZZ`;
     }
 </script>
