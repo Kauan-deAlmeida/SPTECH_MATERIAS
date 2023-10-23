@@ -45,7 +45,7 @@
                 Entre com a quantidade de venda: <input id="input_qtdVenda">
                 Informe o produto vendido <select id="select_produto_vendido">
                         <option value="coco verde">Coco verde</option>
-                        <option value="agua_engarrafada">Agua engarrafada</option></select>
+                        <option value="agua engarrafada">Agua engarrafada</option></select>
                 <button onclick="exibirVenda()">Registrar a Venda</button>
                 <button onclick="encerrarTurno()">Encerrar o turno</button><br>`;
         }
@@ -53,8 +53,16 @@
     
     function exibirVenda(){
         var qtdVenda = Number(input_qtdVenda.value);
-        var produto = select_produto_vendido.value
-        resulrt.innerHTML += `Com a venda de ${qtdVenda} de ${produto} o saldo no estoque é de ZZZZ`;
+        var produto = select_produto_vendido.value      
+        resulrt.innerHTML += `Com a venda de ${qtdVenda} de ${produto} o saldo no estoque é de `;
+        if(produto == "agua engarrafada"){
+            var aguaEngarrafada = Number(input_agua_engarrafada.value);
+            resulrt.innerHTML += `${aguaEngarrafada}`;
+        }
+        else{
+            var cocoFechado = Number(input_coco_fechado.value);
+            resulrt.innerHTML += `${cocoFechado}`;
+        }
     }
     function encerrarTurno(){
         resulrt.innerHTML = ``;
