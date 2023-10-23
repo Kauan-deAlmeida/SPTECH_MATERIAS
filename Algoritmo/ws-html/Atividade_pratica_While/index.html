@@ -11,25 +11,35 @@
     Coco fechado
         <input type="text" id="input_coco_fechado"><br>
     <button onclick="exibirAbrirQuiosque()">Abrir o quiosque</button>
+    
+    <div id="resulrt"></div>
 </body>
 </html>
 
 <script>
+    function exibirVenda(){
+                    resulrt.innerHTML += `Com a venda de XXXX de YYYY o saldo no estoque é de ZZZZ`;
+                }
     function exibirAbrirQuiosque(){
         var aguaEngarrafada = Number(input_agua_engarrafada.value);
         var cocoFechado = Number(input_coco_fechado.value);
         
+        resulrt.innerHTML = ``;
         if(aguaEngarrafada < 100){
             alert(`Com essa quantidade de Água engarrafada não dá para abrir o quiosque`);
-        }
-        else if(aguaEngarrafada >= 100 && aguaEngarrafada <= 1000 ){
-            alert(`Engarrafe mais água de coco`);
         }
         else if(cocoFechado < 200){
             alert(`Com essa quantidade de Coco fechado não dá para abrir o quiosque`);
         }
         else{
-
+            if(aguaEngarrafada >= 100 && aguaEngarrafada <= 1000 ){
+                alert(`Engarrafe mais água de coco`);
+            }
+            else if(cocoFechado >= 200 && cocoFechado <= 2000){
+                alert(`Compre mais cocos`);            
+            }
+                resulrt.innerHTML = `${aguaEngarrafada}<br>${cocoFechado}<br> 
+                <button onclick="exibirVenda()">Registrar a Venda</button><br>`;
         }
     }
 </script>
