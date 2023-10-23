@@ -36,16 +36,35 @@
             else if(cocoFechado >= 200 && cocoFechado <= 2000){
                 alert(`Compre mais cocos`);            
             }
-                resulrt.innerHTML += `--------------------------Estoque Inicial----------------------------------<br>`;
-                resulrt.innerHTML += `${aguaEngarrafada}<br>${cocoFechado}<br> 
-                <input id="input_venda_agua"><br>
-                <input id="input_venda_coco"><br>
-                <button onclick="exibirVenda()">Registrar a Venda</button><br>`;
+                resulrt.innerHTML += `
+                --------------------------Estoque Inicial--------------------------<br>
+                Água engarrafada: ${aguaEngarrafada}<br>
+                Coco fechado: ${cocoFechado}<br>` 
+                resulrt.innerHTML += `  
+                --------------------------Registro das operações de venda--------------------------<br>             
+                Entre com a quantidade de venda: <input id="input_venda_agua">
+                Informe o produto vendido <select id="input_venda_coco">
+                        <option>Coco verde</option>
+                        <option>Agua engarrafada</option></select>
+                <button onclick="exibirVenda()">Registrar a Venda</button>
+                <button onclick="encerrarTurno()">Encerrar o turno</button>`;
         }
     }
     function exibirVenda(){
         var vendaAgua = Number(input_venda_agua.value);
         var vendaCoco = Number(input_venda_coco.value);
         resulrt.innerHTML += `Com a venda de agua de coco o saldo no estoque é de ZZZZ`;
+    }
+    function encerrarTurno(){
+        resulrt.innerHTML = ``;
+        resulrt.innerHTML =`
+        Vendas de Água engarrafada<br>
+        Saldo de produto no estoque: XXXX <br>
+        Quantidade de vendas: YYYY<br>
+        Porcentagem das vendas: ZZZZ<br>
+        Vendas de Coco fechado <br>
+        Saldo de produto no estoque: XXXX <br>
+        Quantidade de vendas: YYYY<br>
+        Porcentagem das vendas: ZZZZ`;
     }
 </script>
