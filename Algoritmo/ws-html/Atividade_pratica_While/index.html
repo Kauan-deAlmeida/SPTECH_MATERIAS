@@ -7,9 +7,20 @@
 </head>
 <body>
     Água engarrafada
-        <input type="text" id="input_agua_coco"><br>
+        <input type="text" id="input_agua_engarrafada"><br>
     Coco fechado
         <input type="text" id="input_coco_fechado"><br>
     <button onclick="exibirAbrirQuiosque()">Abrir o quiosque</button>
 </body>
 </html>
+
+<script>
+    function exibirAbrirQuiosque(){
+        var aguaEngarrafada = Number(input_agua_engarrafada.value);
+        var cocoFechado = Number(input_coco_fechado.value);
+        
+        if(aguaEngarrafada < 100){
+            alert(`Com essa quantidade de Água engarrafada não dá para abrir o quiosque`);
+        }
+    }
+</script>
