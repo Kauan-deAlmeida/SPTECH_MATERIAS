@@ -18,9 +18,12 @@
 </html>
 
 <script>
+    var aguaEngarrafada = 0;
+    var cocoFechado = 0;
+    var qtdVenda = 0;
     function exibirAbrirQuiosque(){
-        var aguaEngarrafada = Number(input_agua_engarrafada.value);
-        var cocoFechado = Number(input_coco_fechado.value);
+        aguaEngarrafada = Number(input_agua_engarrafada.value);
+        cocoFechado = Number(input_coco_fechado.value);
         
         resulrt.innerHTML = ``;
         if(aguaEngarrafada < 100){
@@ -52,7 +55,7 @@
     }
     
     function exibirVenda(){
-        var qtdVenda = Number(input_qtdVenda.value);
+        qtdVenda = Number(input_qtdVenda.value);
         var produto = select_produto_vendido.value      
         resulrt.innerHTML += `Com a venda de ${qtdVenda} de ${produto} o saldo no estoque é de `;
         if(produto == "agua engarrafada"){
@@ -68,12 +71,12 @@
         resulrt.innerHTML = ``;
         resulrt.innerHTML =`
         Vendas de Água engarrafada<br>
-        Saldo de produto no estoque: XXXX <br>
-        Quantidade de vendas: YYYY<br>
-        Porcentagem das vendas: ZZZZ<br>
+        Saldo de produto no estoque: ${aguaEngarrafada} <br>
+        Quantidade de vendas: ${qtdVenda}<br>
+        Porcentagem das vendas: ${aguaEngarrafada * qtdVenda / 100}<br>
         Vendas de Coco fechado <br>
-        Saldo de produto no estoque: XXXX <br>
-        Quantidade de vendas: YYYY<br>
-        Porcentagem das vendas: ZZZZ`;
+        Saldo de produto no estoque: ${cocoFechado} <br>
+        Quantidade de vendas: ${qtdVenda}<br>
+        Porcentagem das vendas: ${cocoFechado * qtdVenda / 100}`;
     }
 </script>
