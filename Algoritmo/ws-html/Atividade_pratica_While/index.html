@@ -43,6 +43,7 @@
                 Água engarrafada: 0<br>
                 Coco fechado: 0<br>
     </div>
+    <span id="quisqueRegistro"></span>
     <span id="quiosqueResultado"></span>
 </body>
 </html>
@@ -53,7 +54,8 @@
     var qtdVenda = 0;
     var estoqueAgua = 0;
     var estoqueCoco = 0;
-    var totalVenda = 0;
+    var totalVendaAgua = 0;
+    var totalVendaCoco = 0;
 
     function exibirAbrirQuiosque(){
         aguaEngarrafada = Number(input_agua_engarrafada.value);
@@ -93,29 +95,46 @@
     
     function exibirVenda(){
         qtdVenda = Number(input_qtdVenda.value);
-        totalVenda += qtdVenda;
-        var produto = select_produto_vendido.value      
-        quiosqueResultado.innerHTML += `Com a venda de ${qtdVenda} de ${produto} o saldo no estoque é de `;
+        var produto = select_produto_vendido.value;
+        quiosqueResultado.innerHTML = ``;      
+        quisqueRegistro.innerHTML += `Com a venda de ${qtdVenda} de ${produto} o saldo no estoque é de `;
         if(produto == "agua engarrafada"){
+            totalVendaAgua += qtdVenda;
             estoqueAgua -= qtdVenda;
-            quiosqueResultado.innerHTML += `${estoqueAgua}<br>`;
+            quisqueRegistro.innerHTML += `${estoqueAgua}<br>`;
         }
         else{
+            totalVendaCoco += qtdVenda;
             estoqueCoco -= qtdVenda;
-            quiosqueResultado.innerHTML += `${estoqueCoco}<br>`;
+            quisqueRegistro.innerHTML += `${estoqueCoco}<br>`;
         }
     }
     function encerrarTurno(){
+        if(estoqueAgua < 100){
+            alert(`Com essa quantidade de Água engarrafada não dá para abrir o quiosque`);
+        }
+        else if(estoqueCoco < 200){
+            alert(`Com essa quantidade de Coco fechado não dá para abrir o quiosque`);
+        }
+        else{
+            if(estoqueAgua >= 100 && estoqueAgua <= 1000 ){
+                alert(`Engarrafe mais água de coco`);
+            }
+            else if(estoqueCoco >= 200 && estoqueCoco <= 2000){
+                alert(`Compre mais cocos`);            
+            }
+        }
+        quisqueRegistro.innerHTML = ``;
         quiosqueResultado.innerHTML =`
         <br>
         Vendas de Água engarrafada<br>
         Saldo de produto no estoque: ${estoqueAgua} <br>
-        Quantidade de vendas: ${totalVenda}<br>
-        Porcentagem das vendas: ${totalVenda * 100 / aguaEngarrafada}%<br>
+        Quantidade de vendas: ${totalVendaAgua}<br>
+        Porcentagem das vendas: ${totalVendaAgua * 100 / aguaEngarrafada}%<br>
         <br>
         Vendas de Coco fechado <br>
         Saldo de produto no estoque: ${estoqueCoco} <br>
-        Quantidade de vendas: ${totalVenda}<br>
-        Porcentagem das vendas: ${totalVenda * 100 / cocoFechado}%`;
+        Quantidade de vendas: ${totalVendaCoco}<br>
+        Porcentagem das vendas: ${totalVendaCoco * 100 / cocoFechado}%`;
     }
 </script>
