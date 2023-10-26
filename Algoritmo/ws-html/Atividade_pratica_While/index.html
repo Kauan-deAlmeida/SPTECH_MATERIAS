@@ -43,7 +43,7 @@
                 Água engarrafada: 0<br>
                 Coco fechado: 0<br>
     </div>
-    <span id="quisqueRegistro"></span>
+    <span id="quiosqueRegistro"></span>
     <span id="quiosqueResultado"></span>
 </body>
 </html>
@@ -96,16 +96,16 @@
         var qtdVenda = Number(input_qtdVenda.value);
         var produto = select_produto_vendido.value;
         quiosqueResultado.innerHTML = ``;      
-        quisqueRegistro.innerHTML += `Com a venda de ${qtdVenda} de ${produto} o saldo no estoque é de `;
+        quiosqueRegistro.innerHTML += `Com a venda de ${qtdVenda} de ${produto} o saldo no estoque é de `;
         if(produto == "agua engarrafada"){
             totalVendaAgua += qtdVenda;
             estoqueAgua -= qtdVenda;
-            quisqueRegistro.innerHTML += `${estoqueAgua}<br>`;
+            quiosqueRegistro.innerHTML += `${estoqueAgua}<br>`;
         }
         else{
             totalVendaCoco += qtdVenda;
             estoqueCoco -= qtdVenda;
-            quisqueRegistro.innerHTML += `${estoqueCoco}<br>`;
+            quiosqueRegistro.innerHTML += `${estoqueCoco}<br>`;
         }
     }
     function encerrarTurno(){
@@ -123,7 +123,7 @@
                 alert(`Compre mais cocos`);            
             }
         }
-        quisqueRegistro.innerHTML = ``;
+        quiosqueRegistro.innerHTML = ``;
         quiosqueResultado.innerHTML =`
         <br>
         Vendas de Água engarrafada<br>
