@@ -13,22 +13,22 @@
          b) Se as validações passarem, atualize o estoque inicial dos dois produtos no sistema e atualize também a mensagem que mostra esses estoques na tela.
          c) Ao preencher os campos para registrar venda e clicar em "Registrar a Venda" faça o seguinte:
          c.1) Exiba a seguinte mensagem (não deve apagar as anteriores):  
-        "Com a venda de XXXX de YYYY o saldo no estoque é de ZZZZ", OBS: 
-        XXXX é a quantidade de produto vendido;
-        YYYY é o produto que foi vendido;
-        ZZZZ é o estoque atual do produto;
-        d) Ao clicar no botão "Encerrar o Turno" faça:
-        d.1) Apague todas as mensagens na página; 
-        d.2) Exiba as seguintes mensagens:
+         "Com a venda de XXXX de YYYY o saldo no estoque é de ZZZZ", OBS: 
+         XXXX é a quantidade de produto vendido;
+         YYYY é o produto que foi vendido;
+         ZZZZ é o estoque atual do produto;
+         d) Ao clicar no botão "Encerrar o Turno" faça:
+         d.1) Apague todas as mensagens na página; 
+         d.2) Exiba as seguintes mensagens:
 
-        Vendas de Água engarrafada
-        Saldo de produto no estoque: XXXX 
-        Quantidade de vendas: YYYY
-        Porcentagem das vendas: ZZZZ
-        Vendas de Coco fechado 
-        Saldo de produto no estoque: XXXX 
-        Quantidade de vendas: YYYY
-        Porcentagem das vendas: ZZZZ -->
+         Vendas de Água engarrafada
+         Saldo de produto no estoque: XXXX 
+         Quantidade de vendas: YYYY
+         Porcentagem das vendas: ZZZZ
+         Vendas de Coco fechado 
+         Saldo de produto no estoque: XXXX 
+         Quantidade de vendas: YYYY
+         Porcentagem das vendas: ZZZZ -->
 </head>
 <body>
     --------------------------Abertura do Quiosque--------------------------<br>
@@ -51,7 +51,6 @@
 <script>
     var aguaEngarrafada = 0;
     var cocoFechado = 0;
-    var qtdVenda = 0;
     var estoqueAgua = 0;
     var estoqueCoco = 0;
     var totalVendaAgua = 0;
@@ -94,7 +93,7 @@
     }
     
     function exibirVenda(){
-        qtdVenda = Number(input_qtdVenda.value);
+        var qtdVenda = Number(input_qtdVenda.value);
         var produto = select_produto_vendido.value;
         quiosqueResultado.innerHTML = ``;      
         quisqueRegistro.innerHTML += `Com a venda de ${qtdVenda} de ${produto} o saldo no estoque é de `;
