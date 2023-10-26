@@ -43,6 +43,7 @@
                 Água engarrafada: 0<br>
                 Coco fechado: 0<br>
     </div>
+    <span id="quiosqueResultado"></span>
 </body>
 </html>
 
@@ -89,23 +90,24 @@
     function exibirVenda(){
         qtdVenda = Number(input_qtdVenda.value);
         var produto = select_produto_vendido.value      
-        resulrt.innerHTML += `Com a venda de ${qtdVenda} de ${produto} o saldo no estoque é de `;
+        quiosqueResultado.innerHTML += `Com a venda de ${qtdVenda} de ${produto} o saldo no estoque é de `;
         if(produto == "agua engarrafada"){
             aguaEngarrafada -= qtdVenda;
-            resulrt.innerHTML += `${aguaEngarrafada}<br>`;
+            quiosqueResultado.innerHTML += `${aguaEngarrafada}<br>`;
         }
         else{
             cocoFechado -= qtdVenda;
-            resulrt.innerHTML += `${cocoFechado}<br>`;
+            quiosqueResultado.innerHTML += `${cocoFechado}<br>`;
         }
     }
     function encerrarTurno(){
-        resulrt.innerHTML = ``;
-        resulrt.innerHTML =`
+        quiosqueResultado.innerHTML =`
+        <br>
         Vendas de Água engarrafada<br>
         Saldo de produto no estoque: ${aguaEngarrafada} <br>
         Quantidade de vendas: ${qtdVenda}<br>
         Porcentagem das vendas: ${aguaEngarrafada * qtdVenda / 100}<br>
+        <br>
         Vendas de Coco fechado <br>
         Saldo de produto no estoque: ${cocoFechado} <br>
         Quantidade de vendas: ${qtdVenda}<br>
