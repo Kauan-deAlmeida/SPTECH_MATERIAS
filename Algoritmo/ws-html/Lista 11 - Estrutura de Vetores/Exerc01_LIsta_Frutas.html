@@ -22,10 +22,11 @@
 </html>
 
 <script>
-    var listaFrutas = ["Maçã", "Amora", "Tomate", "Kiwi", "Banana", "Caju", "Carambola", "Limão", "Maracuja"]
+    var listaFrutas = ["maçã", "amora", "tomate", "kiwi", "banana", "caju", "carambola", "limão", "maracuja"]
 
     function exibirPesquisa(){
         var fruta = input_lista_frutas.value;
+        fruta = fruta.toLowerCase();
         for(var positionList=0; positionList < listaFrutas.length; positionList++){
             if(fruta != listaFrutas[positionList]){
                 resulrt.innerHTML = `Não existe a fruta ${fruta} na lista`;
