@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 04</title>
+    <!-- 4. Crie um programa o qual:
+         a) O usuário informa os nomes dos filmes que mais gosta, 
+         começando pelo seu favorito e depois o segundo que mais gosta e assim por diante. 
+         b) Para cadastrar cada filme, ele clica em "Cadastrar filme";
+         c) Crie um botão "Ver Favoritos" que, ao ser clicado, exibe os filmes favoritos;
+         d) Exiba também, abaixo de tudo, uma frase assim:  "Total: X";
+         d.1) Após a frase acima, mostre as seguintes frases: 
+         O que filme que mais gosta é A.
+         E desses, o que menos gosta é B 
+         Obs: "A" é o primeiro filme cadastrado e "B" o último. -->
+</head>
+<body>
+    Nomes dos filme que mais gosta:
+        <input type="text" id="input_filmes_gosta">
+        <button onclick="exibirCadastroFilme()">Cadastrar filme</button>
+        <button onclick="exibirFilmesFavoritos()">Ver Favoritos</button>
+    <div id="resulrt"></div>
+</body>
+</html>
+
+<script>
+    var listaFilme = [];
+    function exibirCadastroFilme(){
+        var filme = input_filmes_gosta.value;
+        listaFilme.push(filme);
+        for(var ps = 0; ps < listaFilme.length; ps++){
+            console.log(listaFilme[ps]);
+        }
+    }
+    function exibirFilmesFavoritos(){
+        for(var ps = 0; ps < listaFilme.length; ps++){
+            resulrt.innerHTML += `Filme ${ps+1}: ${listaFilme[ps]}<br>`;
+        }
+        resulrt.innerHTML += `Total: ${listaFilme.length}<br>`;
+        resulrt.innerHTML += `Filme que mais gosta é ${listaFilme[0]}<br>`;
+        resulrt.innerHTML += `Filme que menos gosta é ${listaFilme[listaFilme.length-1]}`;
+    }
+
+    
+</script>
