@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 6. Crie um programa o qual:
+         a) O usuário informa os nomes dos filmes que mais gosta e clica em "Cadastrar"; 
+         b) Na medida em que vai cadastrando, os filmes vão aparecendo um abaixo do outro, abaixo do botão.  -->
+</head>
+<body>
+    Nome dos Filmes que mais gosta:
+        <input type="text" id="filmes">
+        <button onclick="exibirCadastro()">Cadastrar</button>
+        <div id="resulrt"></div>
+</body>
+</html>
+
+<script>
+    var listaFilmes = [];
+    function exibirCadastro(){
+        listaFilmes.push(filmes.value);
+        resulrt.innerHTML = ``;
+        for(var ps = 0; ps < listaFilmes.length; ps++){
+            console.log(listaFilmes[ps]);
+            resulrt.innerHTML += `${ps+1} - ${listaFilmes[ps]}<br>`;
+        }
+    }
+
+</script>
