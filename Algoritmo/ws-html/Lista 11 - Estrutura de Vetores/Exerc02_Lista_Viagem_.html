@@ -18,7 +18,7 @@
         <input type="text" id="input_viagem"><br>
         <button onclick="exibirAdicionarViagem()">Adicionar</button>
         <button onclick="viagem1()">Primeira viagem</button>
-        <button onclick="viagem3()">Segunda viagem</button>
+        <button onclick="viagem3()">Terceira viagem</button>
         <button onclick="ultimaViajem()">Última viagem</button>
         <div id="resulrt"></div>
 </body>
@@ -44,7 +44,7 @@
         }
     }
     function viagem3(){
-        if(listViagem.length == 0){
+        if(listViagem.length < 3){
             resulrt.innerHTML = `Ainda não viajou`;
         }
         else{
