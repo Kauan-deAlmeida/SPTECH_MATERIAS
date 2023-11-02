@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 14</title>
+    <!-- 14. Crie um pequeno sistema de loja eletrônica o qual: 
+         a) Tenha um campo "Nome do produto" e outro "Preço de compra";
+         b) Tenha um botão "Cadastrar". Ao clicar nele, o nome e preço ficam cadastrados em algum lugar, por enquanto invisível ao usuário 
+         c) Tenha um botão "Relatório de estoque". Ao clicar nele, deve aparecer uma listagem dos produtos cadastrados com seu valor para venda, como no exemplo a seguir: 
+            Total de produtos: 2 
+            Produto 1: Leite de arroz 
+            Preço de compra: R$1.50. Vender por R$1,87 
+            Produto 2: Caixa de chocolates 
+            Preço de compra: R$9.00. Vender por R$11,25 
+         O preço de venda é sempre o valor da compra mais 25%.
+         #FicaDica: De repente você pode precisar de 2 vetores aqui ;)  -->
+</head>
+<body>
+    Nome do produto:
+        <input type="text" id="input_nome_produto"><br>
+    Preço de compra:
+        <input type="text" id="input_preco_compra">
+        <button onclick="exibirCadastroProduto()">Cadastrar</button>
+        <div id="resulrt"></div>
+</body>
+</html>
+
+<script>
+
+    var listaProduto = [];
+    var listaPreco = [];
+    function exibirCadastroProduto(){
+        var nomeProduto = input_nome_produto.value;
+        var precoProduto = (Number(input_preco_compra.value)).toFixed(2);
+
+        listaProduto.push(nomeProduto);
+        listaPreco.push(precoProduto);
+
+        resulrt.innerHTML = `Total de produtos: ${listaProduto.length}<br>`;
+        for(var ps = 0; ps < listaPreco.length && ps < listaPreco.length; ps++){
+            console.log(listaProduto[ps]);
+            console.log(listaPreco[ps]);
+            resulrt.innerHTML += `
+            Produto ${ps+1}: ${listaProduto[ps]}<br> 
+            Preço de compra: R$${listaPreco[ps]}. Vender por R$${(listaPreco[ps] * 1.25).toFixed(2)}<br>`;
+        }
+    }
+</script>
