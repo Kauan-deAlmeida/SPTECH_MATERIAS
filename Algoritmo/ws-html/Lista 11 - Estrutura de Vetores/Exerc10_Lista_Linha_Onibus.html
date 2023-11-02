@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 10</title>
+    <!-- 10. Crie um programa o qual: 
+         a) O usuário vá registrando os nomes das linhas de ônibus que ele pegou durante a semana. 
+         Ele digita o nome da linha e clica em "Gravar busão";
+         b) Cada vez que o botão é clicado o programa deve mostrar a lista de linhas de ônibus abaixo do botão e 
+         em ordem inversa (do último para o primeiro); 
+         c) Deve haver outro campo em que ele pesquisa por uma linha que já tenha pego. Ao clicar em "Pesquisar", 
+         deve ver uma dessas frases, abaixo da lista de linhas de ônibus que já pegou: 
+            Você nunca pegou essa linha (caso não tenha cadastrado a linha em questão) 
+            OU 
+            Você já pegou essa linha 4 vezes, nessa ordem: 2, 4, 8, 9 
+        (supondo que ele cadastrou a mesma linha na 2ª vez, na 4ª vez, na 8ª vez e na 9ª vez). -->
+</head>
+<body>
+    Linhas de ônibus que pegou durante a semana:
+        <input type="text" id="linhaOnibus">
+        <button onclick="exibirLinhaOnibus()">Gravar busão</button><br>
+        <div id="resulrt_linha"></div>
+    Linha pesquisada:
+        <input type="text" id="input_linhaPesquisada">
+        <button onclick="exibirPesquisaLinha()">Pesquisar Linha</button>
+        <div id="resulrt_pesquisa"></div>
+</body>
+</html>
+
+<script>
+    var listaLinhaOnibus = [];
+
+    function exibirLinhaOnibus(){
+        var linha = linhaOnibus.value
+        listaLinhaOnibus.push(linha);
+
+        resulrt_linha.innerHTML = ``;
+        for(var ps = 0; ps < listaLinhaOnibus.length; ps++){
+            console.log(listaLinhaOnibus[ps]);
+            resulrt_linha.innerHTML += listaLinhaOnibus[listaLinhaOnibus.length - (ps + 1)] + `<br>`;
+        }
+    }
+
+    function exibirPesquisaLinha(){
+        var pesquisaOnibus = input_linhaPesquisada.value;
+        var linhasRepetidas = 0;
+        
+        resulrt_pesquisa.innerHTML = ``;
+        var listaLinhaRepetida = [];
+        for(var ps = 0; ps < listaLinhaOnibus.length; ps++){
+            if(pesquisaOnibus == listaLinhaOnibus[ps]){
+                linhasRepetidas += 1
+                listaLinhaRepetida.push(ps);
+                resulrt_pesquisa.innerHTML = `Você já pegou essa linha ${linhasRepetidas} vezes, nessa ordem: ${listaLinhaRepetida}<br>`;
+            }
+            else if(ps == (listaLinhaOnibus.length - 1)){
+                for(var psc = 0; psc < listaLinhaOnibus.length; psc++){
+                    if(pesquisaOnibus != listaLinhaOnibus[psc]){
+                        resulrt_pesquisa.innerHTML += `Você nunca pegou essa linha`;
+                        break;
+                    }
+                    else{
+                        break;
+                    }
+                }
+            }
+        }
+    }
+</script>
