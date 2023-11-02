@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 11</title>
+    <!-- 11. Crie um programa o qual: 
+         a) Pergunte ao usuário o preço de um produto;
+         b) Ao clicar em "Cadastrar", o preço fica cadastrado num lugar que o usuário não vê;
+         c) Ao clicar em "Atualizar Estoque", deve aparecer um texto como este abaixo: 
+           Você tem X produtos cadastrados em estoque 
+           Seu estoque vale R$Y
+         Em que X é a quantidade de produtos cadastrados pelo usuário e Y é a soma de todos os valores. -->
+</head>
+<body>
+    Preço do produto:
+        <input type="text" id="input_preco_produto">
+        <button onclick="exibirCadastroPreco()">Cadastrar</button>
+        <button onclick="exibirAtualizarEstoque()">Atualizar Estoque</button>
+        <div id="resulrt"></div>
+</body>
+</html>
+
+<script>
+
+    var listaPrecoProduto = [];
+    var precoTotal = 0
+    function exibirCadastroPreco(){
+        var precoProduto = Number(input_preco_produto.value);
+        precoTotal += precoProduto;
+        listaPrecoProduto.push(precoProduto);
+
+        for(var ps = 0; ps < listaPrecoProduto.length; ps++){
+            console.log(listaPrecoProduto[ps]);
+        }
+    }
+
+    function exibirAtualizarEstoque(){
+        resulrt.innerHTML = `
+        Você tem ${listaPrecoProduto.length} produtos cadastrados em estoque<br> 
+        Seu estoque vale R$${precoTotal}`;
+    }
+</script>
