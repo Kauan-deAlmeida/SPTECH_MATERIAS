@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 13</title>
+    <!-- 13. Crie um programa o qual: 
+         a) Cadastre a campanha de um time de futebol num campeonato da seguinte forma: 
+         a.1) Tenha um 'combo' identificado com o texto "Indique o resultado" com os itens: 
+            Vitória 
+            Empate 
+            Derrota 
+         b) Ao clicar num botão "Registrar jogo", o resultado escolhido em 
+         a) é registrado em um local invisível ao usuário e um texto abaixo é exibido (ou atualizado). O texto é como este: 
+            O time teve: V vitórias, E empates, D derrotas 
+            Pontuação total: X pontos 
+            Aproveitamento: Y%
+         Em que X é calculado assim: Cada vitória (V) vale 3 pontos. Cada empate (E) vale 1 ponto. Cada derrota (D) vale 0 pontos. 
+         O Y é o total de pontos conquistados (X) dividido pelo total de pontos possíveis (ou seja, considerando que tivesse vencido todos os jogos) vezes 100. 
+         c) Deve haver um campo "Indique qual jogo deseja saber o resultado". Na medida em que vai digitando, aparece um texto, abaixo do texto de b) como este: 
+         No XXº jogo, o time Ganhou (ou "Perdeu" ou "Empatou") 
+         ou um texto como este, caso o valor seja de um jogo que não foi cadastrado: 
+         Não foi cadastrado um XXº jogo 
+         Obs: Neste item considere que o usuário ache que 1 indica o 1º jogo. Ou seja, o usuário não imagina que o 1º é o jogo "0" na verdade.  -->
+</head>
+<body>
+    Indique o resultado:   
+        <select id="select_jogo">
+            <option value="Vitoria">Vitória</option>
+            <option value="Empate">Empate</option>
+            <option value="Derrota">Derrota</option>
+        </select>
+        <button onclick="exibirRegistroJogo()">Registrar jogo</button><br>
+    Indique qual jogo deseja saber o resultado:
+        <input type="text" id="input_resultado_jogo">
+        <button onclick="ResultadoJogo()">Jogo</button>
+        <div id="resulrt"></div>
+        <div id="resulrtJogo"></div>
+    
+</body>
+</html>
+
+<script>
+
+    var listaJogo = [];
+    function exibirRegistroJogo(){
+        var jogo = select_jogo.value;
+        var vitorias = 0;
+        var empate = 0;
+        var derrota = 0;
+        var pontos = 0;
+        var historicosJogo = `<b>--------Historico de jogo--------</b>`;
+
+        listaJogo.push(jogo);
+        for(var ps = 0; ps < listaJogo.length; ps++){
+            console.log(listaJogo[ps]);
+        
+        if(listaJogo[ps] == "Vitoria"){
+            vitorias += 1;
+            pontos += 3;
+        }
+        else if(listaJogo[ps] == "Empate"){
+            empate += 1;
+            pontos += 1;
+        }
+        else{
+            derrota += 1;
+        }
+    }
+    var aproveitamento = ((pontos / (listaJogo.length * 3)) * 100).toFixed(2);
+
+    resulrt.innerHTML = `
+        ${historicosJogo}<br>
+        O time teve: ${vitorias} vitórias, ${empate} empates, ${derrota} derrotas<br>
+        Pontuação total: ${pontos} pontos<br>
+        Aproveitamento: ${aproveitamento}%`;
+    }   
+
+    function ResultadoJogo(){
+        var resJogo = input_resultado_jogo.value;
+        var pesquisaJogo = `<b>--------Pesquisa de jogo--------</b>`;
+
+            if(resJogo <= listaJogo.length){
+                resulrtJogo.innerHTML = `${pesquisaJogo}<br>No ${resJogo}° jogo, o time `;
+                
+                for(var ps = 0; ps < listaJogo.length; ps++){
+                    if(resJogo == (ps + 1)){
+                        if(listaJogo[ps] == "Vitoria"){
+                            resulrtJogo.innerHTML += "Ganhou";
+                            break;
+                        }
+                        else if(listaJogo[ps] == "Derrota"){
+                            resulrtJogo.innerHTML += "Perdeu";
+                            break;    
+                        }
+                        else{
+                            resulrtJogo.innerHTML += "Empatou";
+                            break;
+                        }
+                    }
+                } 
+            }
+            else{
+                resulrtJogo.innerHTML = `${pesquisaJogo}<br> Não foi cadastrado um ${resJogo}° jogo`;
+            }
+    }
+</script>
