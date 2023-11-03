@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 15</title>
+    <!-- 15. Refaça a 14ª questão de tal forma que, ao final do relatório, o programa exiba: 
+         a) O nome do produto mais caro;
+         b) O nome do produto mais barato;
+         c) A soma dos preços de compra dos produtos;
+         d) A média de preço de venda dos produtos. -->
+</head>
+<body>
+    Nome do produto:
+        <input type="text" id="input_nome_produto"><br>
+    Preço de compra:
+        <input type="text" id="input_preco_compra">
+        <button onclick="exibirCadastroProduto()">Cadastrar</button>
+        <div id="resulrt"></div>
+</body>
+</html>
+
+<script>
+
+    var listaProduto =  [];
+    var listaPreco = [];
+    function exibirCadastroProduto(){
+        var nomeProduto = input_nome_produto.value;
+        var precoProduto = (Number(input_preco_compra.value)).toFixed(2);
+        var produtoCaro = 0;
+        var produtoBarato = 0;
+        var valorTotal = 0;
+        var mediaDosProdutos = 0;
+
+        listaProduto.push(nomeProduto);
+        listaPreco.push(precoProduto);
+
+        resulrt.innerHTML = `Total de produtos: ${listaProduto.length}<br>`;
+        for(var ps = 0; ps < listaPreco.length && ps < listaPreco.length; ps++){
+            console.log(listaProduto[ps]);
+            console.log(listaPreco[ps]);
+            var valorVenda = (listaPreco[ps] * 1.25).toFixed(2);
+            resulrt.innerHTML += `
+            Produto ${ps+1}: ${listaProduto[ps]}<br> 
+            Preço de compra: R$${listaPreco[ps]}. Vender por R$${valorVenda}<br>`;
+                       
+            valorTotal += Number(valorVenda);
+            mediaDosProdutos += Number(valorVenda);
+        }
+        mediaDosProdutos /= listaPreco.length 
+
+        for(var vl = 0; vl < listaPreco.length; vl++){
+            if(produtoCaro < listaPreco[vl]){
+                produtoCaro = listaPreco[vl]
+                var nomePCaro = listaProduto[vl]
+            }
+            if(produtoBarato == 0){
+                produtoBarato = listaPreco[vl]
+                var nomePBarato = listaProduto[vl]
+            }
+            else if(produtoBarato > listaPreco[vl]){
+                produtoBarato = listaPreco[vl]
+                nomePBarato = listaProduto[vl]
+            }
+        }
+        resulrt.innerHTML += `
+        Nome produto mais caro: ${produtoCaro}<br>
+        Nome produto mais barato: ${nomePBarato}<br>
+        Valor total da compra: ${valorTotal}<br>
+        Média de preço dos produtos: ${mediaDosProdutos}
+        `;
+    }
+</script>
