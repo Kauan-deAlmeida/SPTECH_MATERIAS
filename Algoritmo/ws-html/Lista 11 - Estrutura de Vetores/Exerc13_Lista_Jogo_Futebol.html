@@ -32,8 +32,7 @@
         </select>
         <button onclick="exibirRegistroJogo()">Registrar jogo</button><br>
     Indique qual jogo deseja saber o resultado:
-        <input type="text" id="input_resultado_jogo">
-        <button onclick="ResultadoJogo()">Jogo</button>
+        <input type="text" id="input_resultado_jogo" onkeyup="ResultadoJogo()">
         <div id="resulrt"></div>
         <div id="resulrtJogo"></div>
     
@@ -80,7 +79,10 @@
         var resJogo = input_resultado_jogo.value;
         var pesquisaJogo = `<b>--------Pesquisa de jogo--------</b>`;
 
-            if(resJogo <= listaJogo.length){
+        if(resJogo == 0 ){
+            resulrtJogo.innerHTML = ``;
+        }
+            else if(resJogo <= listaJogo.length){
                 resulrtJogo.innerHTML = `${pesquisaJogo}<br>No ${resJogo}° jogo, o time `;
                 
                 for(var ps = 0; ps < listaJogo.length; ps++){
@@ -100,6 +102,7 @@
                     }
                 } 
             }
+        
             else{
                 resulrtJogo.innerHTML = `${pesquisaJogo}<br> Não foi cadastrado um ${resJogo}° jogo`;
             }
