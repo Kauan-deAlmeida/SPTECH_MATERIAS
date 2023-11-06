@@ -27,8 +27,8 @@
 
     var listaNumero = []
     function exibirAnalisarHistorico(){
-        var maiorNumero = 0;
-        var menorNumero = 0;
+        var maiorNumero = listaNumero[0];
+        var menorNumero = listaNumero[0];
         listaNumero.push(Number(input_numero_qualquer.value));
 
         resulrt_historico_numero.innerHTML = ``;
@@ -39,10 +39,7 @@
             if(maiorNumero < listaNumero[posicao]){
                 maiorNumero = listaNumero[posicao]
             }
-            if(menorNumero == 0){
-                menorNumero = listaNumero[posicao]
-            }
-            else if(menorNumero > listaNumero[posicao]){
+            if(menorNumero > listaNumero[posicao]){
                 menorNumero = listaNumero[posicao]
             }
         }
