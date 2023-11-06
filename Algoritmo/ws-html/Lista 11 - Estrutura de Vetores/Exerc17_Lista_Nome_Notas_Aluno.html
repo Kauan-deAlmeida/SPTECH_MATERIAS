@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 17</title>
+    <!-- A professora Alice precisa de um programa que auxilie na análise de performance de sua turma. 
+            Parte-1 
+                Tenha uma tela parecida com a abaixo (somente o HTML, não precisa estilizar). 
+                Quando o botão “Registrar” for clicado: 
+                Valide os campos de entrada, sendo que o “nome” tem que estar preenchido e a “nota” tem que estar entre 0 e 10, em caso de erro emita mensagem explicativa e não siga em frente. 
+                Guardar os dados;
+                Liste abaixo dos botões todas as informações guardadas, só que em ordem inversa a que foi cadastrada. 
+                Quando o botão “Analisar” for clicado, limpe todos os elementos da Parte-1 e execute a Parte-2. 
+            Parte-2
+                Tenha uma tela parecida com a abaixo 
+                        Quando o botão “Pesquisar” for clicado: 
+                Valide o intervalo de pesquisa, sendo que o campo “de” tem que estar entre 0 e 10, o campo “até” tem que estar entre 0 e 10 e o campo “de” tem que ser menor ou igual ao campo “até”.
+                Em caso de erro emitir mensagem explicativa e não siga em frente. 
+                Liste todos os alunos com nota entre o intervalo informado da seguinte forma: “O aluno xxxxxxx ficou com a nota 99,9” 
+                Abaixo da relação de alunos emita o resumo da seguinte forma: 
+                    Total de alunos registrados: 999
+                    Total de alunos listado: 999 (com nota no intervalo informado) 
+                Maior Nota: 99,9 
+                Menor Nota: 99,9 
+                Média da Nota: 99,9 -->
+</head>
+<body>
+    <div id="banner">
+    <h1>Análise de performance de Alunos - Registro</h1>
+    Entre com o nome do aluno:
+        <input type="text" id="input_nome_aluno"><br>
+    Entre com a nota do aluno: 
+        <input type="text" id="input_nota_aluno"><br>
+        <button onclick="exibirRegistroAluno()">Registrar</button>
+        <button onclick="exibirAnaliseAluno()">Analisar</button>
+    <div id="resulrt_registro_aluno"></div>
+</div>
+</body>
+</html>
+
+<script>
+
+    var listaAluno = []
+    var listaNota = []
+    function exibirRegistroAluno(){
+        var nomeAluno = input_nome_aluno.value;
+        var notaAluno = Number(input_nota_aluno.value);
+        listaAluno.push(nomeAluno);
+        listaNota.push(notaAluno);
+        
+        
+        if(nomeAluno != false && notaAluno >=0 && notaAluno <= 10){
+            resulrt_registro_aluno.innerHTML = ``;
+            for(var posicao = listaNota.length - 1; posicao >= 0; posicao--){
+                resulrt_registro_aluno.innerHTML += `Nome: ${listaAluno[posicao]}<br> Nota: ${listaNota[posicao]}<br><br>`;
+            }
+        }
+        else{
+            alert(`Nota invalida ou Nome não preenchido`);
+        }
+    }
+
+    function exibirAnaliseAluno(){
+        banner.innerHTML = `
+        <h1>Análise de performance de Alunos - Pesquisa</h1><br>
+        Entre com o intervalo de notas: 
+            <input id="input_intervalo_inicial" placeholder="De">
+            <input id="input_intervalo_final" placeholder="até"><br>
+            <button onclick="exibirPesquisa()">Pesquisa</button><br>
+            <div id="pesquisaNotas"></div>`;
+    }
+    function exibirPesquisa(){
+        var intervaloInicial = Number(input_intervalo_inicial.value);
+        var intervaloFinal = Number(input_intervalo_final.value);
+        var maiorNota = listaNota[0];
+        var menorNota = listaNota[0];
+        var mediaNota = 0;
+        var alunosListados = 0;
+
+        if(intervaloInicial >= 0 && intervaloFinal <= 10 && intervaloInicial <= intervaloFinal){
+            pesquisaNotas.innerHTML = ``;
+            for(var porsicaoPesquisa = 0; porsicaoPesquisa < listaAluno.length; porsicaoPesquisa++){
+                if(listaNota[porsicaoPesquisa] >= intervaloInicial && listaNota[porsicaoPesquisa] <= intervaloFinal){
+                    pesquisaNotas.innerHTML += `O aluno ${listaAluno[porsicaoPesquisa]} ficou com a nota ${listaNota[porsicaoPesquisa]}<br>`;
+                    alunosListados += 1; 
+                }
+                if(maiorNota < listaNota[porsicaoPesquisa]){
+                    maiorNota = listaNota[porsicaoPesquisa]
+                }
+                if(menorNota > listaNota[porsicaoPesquisa]){
+                    menorNota = listaNota[porsicaoPesquisa]
+                }
+                mediaNota += listaNota[porsicaoPesquisa];
+            }
+            mediaNota /= listaNota.length
+            pesquisaNotas.innerHTML += `<br>
+            Total de alunos registrados: ${listaAluno.length} <br>
+            Total de alunos listado: ${alunosListados   } <br>
+            Maior Nota: ${maiorNota} <br>
+            Menor Nota: ${menorNota} <br>
+            Média da Nota: ${mediaNota} <br>`;
+        }
+        else{
+            alert(`Intervalos de notas fora do parametro`);
+        }
+    }
+</script>
