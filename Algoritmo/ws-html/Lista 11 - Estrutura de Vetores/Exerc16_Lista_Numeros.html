@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 16</title>
+    <!-- 16. Crie um programa o qual: 
+         a) Tenha um campo "Digite um número qualquer"; 
+         b) Tenha um botão "Analisar histórico" que ao ser clicado, o número é cadastrado em algum lugar e, 
+         em seguida, deve aparecer um histórico dos números cadastrados, bem como o maior e o menor, como no exemplo a seguir: 
+            1º Número: 15 
+            2º Número: 22 
+            3º Número: 19 
+            4º Número: 5 
+         Maior: 22 
+         Menor: 5  -->
+</head>
+<body>
+    Digite um npumero qualquer:
+        <input type="text" id="input_numero_qualquer">
+        <button onclick="exibirAnalisarHistorico()">Analisar histórico</button>
+        <div id="resulrt_historico_numero"></div>
+</body>
+</html>
+
+<script>
+
+    var listaNumero = []
+    function exibirAnalisarHistorico(){
+        var maiorNumero = 0;
+        var menorNumero = 0;
+        listaNumero.push(Number(input_numero_qualquer.value));
+
+        resulrt_historico_numero.innerHTML = ``;
+        for(var posicao = 0; posicao < listaNumero.length; posicao++){
+            console.log(listaNumero[posicao ]);
+
+            resulrt_historico_numero.innerHTML += `${posicao +1}° Número: ${listaNumero[posicao]}<br>`;
+            if(maiorNumero < listaNumero[posicao]){
+                maiorNumero = listaNumero[posicao]
+            }
+            if(menorNumero == 0){
+                menorNumero = listaNumero[posicao]
+            }
+            else if(menorNumero > listaNumero[posicao]){
+                menorNumero = listaNumero[posicao]
+            }
+        }
+        resulrt_historico_numero.innerHTML += `
+        maior: ${maiorNumero}<br>
+        menor: ${menorNumero}<br>`
+    }
+</script>
