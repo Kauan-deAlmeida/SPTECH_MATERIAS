@@ -296,7 +296,121 @@ mysql> select  venda.dtVenda,
 +------------+-------------+--------------------+
 2 rows in set (0.00 sec)
 
+mysql> use Venda;
+Database changed
+
+mysql> -- n) Exibir apenas o nome do produto, o valor do produto e a soma da quantidade de produtos vendidos agrupados pelo nome do produto.
+mysql> select produto.nomeProduto as 'Nome produto',
+    -> produto.preco as 'Preco produto',
+    -> sum(carrinho.qtdProdutosVendido * produto.preco) as 'quantidade vendida'
+    -> from produto
+    -> join carrinho
+    -> on fkProduto = produto.idProduto
+    -> group by produto.nomeProduto, produto.preco;
++--------------+---------------+--------------------+
+| Nome produto | Preco produto | quantidade vendida |
++--------------+---------------+--------------------+
+| Shampoo      |         10.30 |              92.70 |
+| Macarrão     |          4.26 |              25.56 |
+| Camisa       |         30.60 |             214.20 |
+| Bolsa        |         50.51 |             505.10 |
+| Mouse        |         90.32 |             451.60 |
+| Lapis        |          2.20 |               8.80 |
+| Cadeira      |         60.42 |             241.68 |
+| Jogo         |         50.00 |             500.00 |
+| Caderno      |         15.32 |              76.60 |
+| Carregador   |         25.59 |              76.77 |
++--------------+---------------+--------------------+
+10 rows in set (0.00 sec)
+
+mysql> -- o) Inserir dados de um novo cliente. Exibir os dados dos clientes, das respectivas vendas, e os clientes que não realizaram nenhuma venda.
+mysql> insert into cliente (fkClienteIndica, nomeCliente, email, endereco)values
+    -> (2, 'Leonardo Santos', 'leonardo.santos@gmail.com', 'Av. Paraiso'),
+    -> (3, 'Lucas Oristanio', 'lucas.oristanio@gmail.com', 'Av. Sacomã'),
+    -> (1, 'Petro Silva', 'petro.silva@sptech.school', 'Rua Brasil');
+Query OK, 3 rows affected (0.03 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from cliente
+    -> left join venda
+    -> on idCliente = fkCliente;
++-----------+-----------------+------------------+--------------------------------+-----------------+---------+------------+------------+-----------+
+| idCliente | fkClienteIndica | nomeCliente      | email                          | endereco        | idVenda | totalVenda | dtVenda    | fkCliente |
++-----------+-----------------+------------------+--------------------------------+-----------------+---------+------------+------------+-----------+
+|         1 |            NULL | Kauan Almeida    | kauan.almeida@sptech.school    | Rua tibetania   |       1 |     200.53 | 2023-10-31 |         1 |
+|         1 |            NULL | Kauan Almeida    | kauan.almeida@sptech.school    | Rua tibetania   |       7 |     155.53 | 2023-11-01 |         1 |
+|         2 |            NULL | Bruna Duran      | bruna.duran@gmail.com          | Rua Joracy      |       2 |     150.53 | 2023-09-02 |         2 |
+|         2 |            NULL | Bruna Duran      | bruna.duran@gmail.com          | Rua Joracy      |       8 |     164.53 | 2023-05-05 |         2 |
+|         3 |            NULL | Simone Aparecida | simone.aparecida@gmail.com     | Av. dasNações   |       3 |     320.53 | 2023-04-16 |         3 |
+|         3 |            NULL | Simone Aparecida | simone.aparecida@gmail.com     | Av. dasNações   |       9 |     320.53 | 2023-06-26 |         3 |
+|         4 |               1 | Kevin Peter      | kevin.peter@sptech.school      | Av. Paulista    |       4 |     599.53 | 2023-05-25 |         4 |
+|         4 |               1 | Kevin Peter      | kevin.peter@sptech.school      | Av. Paulista    |      10 |     345.53 | 2023-10-30 |         4 |
+|         5 |               1 | Gabriel Guedes   | gabriel.guedes@sptech.school   | Av. Consolação  |       5 |     620.53 | 2023-03-22 |         5 |
+|         5 |               1 | Gabriel Guedes   | gabriel.guedes@sptech.school   | Av. Consolação  |      11 |     462.53 | 2023-09-08 |         5 |
+|         6 |               2 | Lucas Carvalho   | lucas.carvalho@gmail.com       | Av. Ana Rosa    |       6 |     243.53 | 2023-06-12 |         6 |
+|         6 |               2 | Lucas Carvalho   | lucas.carvalho@gmail.com       | Av. Ana Rosa    |      12 |     952.53 | 2023-04-17 |         6 |
+|         7 |               2 | Gabriella Sierra | gabriella.sierra@sptech.school | Rua Tamanduatei |    NULL |       NULL | NULL       |      NULL |
+|         8 |               3 | Fabricio Silva   | fabricio.silva@gmail.com       | Av. Sacomã      |    NULL |       NULL | NULL       |      NULL |
+|         9 |               3 | Andrei Oliveira  | andrei.oliveira@sptech.school  | Rua Paraiso     |    NULL |       NULL | NULL       |      NULL |
+|        10 |               2 | Leonardo Santos  | leonardo.santos@gmail.com      | Av. Paraiso     |    NULL |       NULL | NULL       |      NULL |
+|        11 |               3 | Lucas Oristanio  | lucas.oristanio@gmail.com      | Av. Sacomã      |    NULL |       NULL | NULL       |      NULL |
+|        12 |               1 | Petro Silva      | petro.silva@sptech.school      | Rua Brasil      |    NULL |       NULL | NULL       |      NULL |
++-----------+-----------------+------------------+--------------------------------+-----------------+---------+------------+------------+-----------+
+18 rows in set (0.00 sec)
+
+mysql> -- p) Exibir o valor mínimo e o valor máximo dos preços dos produtos;
+
+mysql> select min(preco), max(preco) from produto;
++------------+------------+
+| min(preco) | max(preco) |
++------------+------------+
+|       0.99 |      90.32 |
++------------+------------+
+1 row in set (0.00 sec)
+
+mysql> -- q) Exibir a soma e a média dos preços dos produtos;
+mysql> select sum(preco) as 'Soma dos produtos', avg(preco) as 'Media dos produtos' from produto;
++-------------------+--------------------+
+| Soma dos produtos | Media dos produtos |
++-------------------+--------------------+
+|            340.51 |          30.955455 |
++-------------------+--------------------+
+1 row in set (0.00 sec)
+
+mysql> -- r) Exibir a quantidade de preços acima da média entre todos os produtos;
+mysql> select count(*) as 'Quantidade de produto acima da média' from produto where preco > (select avg(preco) from produto);
++--------------------------------------+
+| Quantidade de produto acima da média |
++--------------------------------------+
+|                                    4 |
++--------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> -- s) Exibir a soma dos preços distintos dos produtos;
+mysql> select sum(distinct preco) from produto;
++---------------------+
+| sum(distinct preco) |
++---------------------+
+|              340.51 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> -- t) Exibir a soma dos preços dos produtos agrupado por uma determinada venda;
+mysql> select sum(preco)
+    ->      from produto
+    ->      join carrinho
+    ->      on idProduto = fkProduto
+    ->      group by fkVenda= 1;
++------------+
+| sum(preco) |
++------------+
+|     290.10 |
+|     143.03 |
++------------+
+2 rows in set (0.00 sec)
+
 mysql>
+
 
 
 
