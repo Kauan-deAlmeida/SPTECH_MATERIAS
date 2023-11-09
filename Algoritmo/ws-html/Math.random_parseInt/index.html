@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="exibirNumero()">Exibir Numero aleatorio:</button>
+    <div id="numeroAleatorio"></div>
+</body>
+</html>
+
+<script>
+
+    function exibirNumero(){
+        var numero = (Math.random())
+        numeroAleatorio.innerHTML = parseInt(numero * 6 + 1);
+        console.log(numero);
+    }
+</script>
