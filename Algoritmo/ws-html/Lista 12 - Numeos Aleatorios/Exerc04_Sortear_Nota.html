@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 04</title>
+    <!-- 4. Crie um programa o qual: 
+         a) Ao clicar num botão "Sortear Nota para aluno", 
+         apareça na página mesmo um número aleatório, entre 0 e 10 (podem ser sorteados números decimais, como 8.5, por exemplo). -->
+</head>
+<body>
+    <button onclick="exibirNota()">Sortear Nota para aluno</button>
+    <div id="resulrt"></div>
+</body>
+</html>
+
+<script>
+
+    function exibirNota(){
+        var nota = (Math.random() * 10).toFixed(1)
+        resulrt.innerHTML = nota;
+    }
+</script>
