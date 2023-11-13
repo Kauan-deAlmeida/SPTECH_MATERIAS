@@ -1,0 +1,374 @@
+mysql -h localhost -u root -p
+
+mysql> create database Pratica08;
+Query OK, 1 row affected (0.27 sec)
+
+mysql> use Pratica08;
+Database changed
+
+-- 1. Criar as tabelas no MySQL e executar as intruções relacionadas a seguir.
+mysql> create table aluno(
+	RA int primary key auto_increment,
+	nome varchar(50),
+	email varchar(45));
+Query OK, 0 rows affected (1.86 sec)
+
+mysql> create table grupo(
+	idGrupo int auto_increment,
+	fkAluno int,
+	constraint fkIdAluno foreign key (fkAluno) references aluno(RA),
+	primary key(idGrupo, fkAluno),
+	nome varchar(50),
+	descricao varchar(60));
+Query OK, 0 rows affected (1.63 sec)
+
+mysql> 	create table professor(
+	idProfessor int primary key auto_increment,
+	nome varchar(50),
+	disciplina varchar(50))auto_increment = 10000;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create table avaliacao(
+	idAvaliacao int auto_increment,
+	fkGrupo int,
+	constraint fkIdGrupo foreign key (fkGrupo) references grupo(idGrupo),
+	fkProfessor int,
+	constraint fkIdProfessor foreign key (fkProfessor) references professor(idProfessor),
+	fkProfessorAvaliador int,
+	constraint fkIdProfessorAvaliador foreign key (fkProfessorAvaliador) references professor(idProfessor),
+	fkRaAluno int,
+	constraint fkAluno foreign key (fkRaAluno) references aluno(ra),
+	dtAvaliacao datetime,
+	nota decimal(4,2),
+	primary key(idAvaliacao, fkGrupo, fkProfessor, fkProfessorAvaliador, fkRaAluno));
+Query OK, 0 rows affected (1.72 sec)
+
+-- 2. Insira dados nas tabelas, de forma que tenha pelo menos 2 grupos cadastrados.
+mysql> insert into aluno (RA, nome, email) values
+	(01232072, 'Kauan Almeida', 'kauan.almeida@sptech.school'),
+	(01232152, 'Bruna Duran', 'bruna.duran@sptech.school'),
+	(01232002, 'Nicolas Kleyton', 'nicolas.kleyton@sptech.school'),
+	(01232195, 'Luis Guilherme', 'luis.guilherme@sptech.school'),
+	(01232462, 'Lucas Oristanio', 'luacas.oristanio@sptech.school'),
+	(01232021, 'Gabriel Guedes', 'gabriel.guedes@sptech.school'),
+	(01232325, 'Kevin Peters', 'kavin.peters@sptech.school'),
+	(01232627, 'Vitor Santos', 'vitor.santos@sptech.school'),
+	(01232926, 'Guilherme Carvalho', 'guilherme.carvalho@sptech.school');
+Query OK, 9 rows affected (1.85 sec)
+Records: 9  Duplicates: 0  Warnings: 0
+
+mysql> insert into grupo (fkAluno, nome, descricao) values
+	(01232072, 'Vinum', 'Monitoramento na temperatura do vinho'),
+	(01232152, 'Vinum', 'Monitoramento na temperatura do vinho'),
+	(01232002, 'Vinum', 'Monitoramento na temperatura do vinho'),
+	(01232195, 'ArCar', 'Monitoramento nas partes eletricos do carro'),
+	(01232462, 'ArCar', 'Monitoramento nas partes eletricos do carro'),
+	(01232021, 'ArCar', 'Monitoramento nas partes eletricos do carro'),
+	(01232325, 'FrutLive', 'Monitoramento na temperatura e umidade das frutas'),
+	(01232627, 'FrutLive', 'Monitoramento na temperatura e umidade das frutas'),
+	(01232926, 'FrutLive', 'Monitoramento na temperatura e umidade das frutas');
+Query OK, 9 rows affected (0.01 sec)
+Records: 9  Duplicates: 0  Warnings: 0
+
+mysql> insert into professor (nome, disciplina) values
+     ('Fernando Brandão', 'PI'),
+     ('Fernanda Caramiko', 'PI'),
+     ('Viviam Flamengo', 'Banco de Dados'),
+     ('Caio Eduardo', 'Algoritmo');
+Query OK, 2 rows affected (0.02 sec)
+
+insert into avaliacao (fkGrupo, fkProfessor, fkProfessorAvaliador, fkRaAluno, dtAvaliacao, nota) values
+    -> (1, 10002, 10001, 1232072, '2023-11-10 09:00:00', 09.00),
+    -> (2, 10002, 10001, 1232002, '2023-11-10 10:30:00', 08.20),
+    -> (3, 10003, 10000, 1232021, '2023-11-13 12:30:00', 07.75),
+    -> (4, 10003, 10000, 1232152, '2023-11-13 13:00:00', 09.25),
+    -> (5, 10002, 10001, 1232195, '2023-11-14 15:00:00', 08.35),
+    -> (6, 10002, 10001, 1232325, '2023-11-14 14:30:00', 07.25),
+    -> (7, 10003, 10000, 1232462, '2023-11-15 11:00:00', 08.90),
+    -> (8, 10003, 10000, 1232627, '2023-11-15 12:00:00', 09.00),
+    -> (9, 10002, 10001, 1232926, '2023-11-13 13:00:00', 09.50);
+Query OK, 9 rows affected (1.58 sec)
+Records: 9  Duplicates: 0  Warnings: 0
+
+mysql>
+
+-- 3. Exibir todos os dados nas tabelas:
+mysql> select * from aluno;
++---------+--------------------+----------------------------------+
+| RA      | nome               | email                            |
++---------+--------------------+----------------------------------+
+| 1232002 | Nicolas Kleyton    | nicolas.kleyton@sptech.school    |
+| 1232021 | Gabriel Guedes     | gabriel.guedes@sptech.school     |
+| 1232072 | Kauan Almeida      | kauan.almeida@sptech.school      |
+| 1232152 | Bruna Duran        | bruna.duran@sptech.school        |
+| 1232195 | Luis Guilherme     | luis.guilherme@sptech.school     |
+| 1232325 | Kevin Peters       | kavin.peters@sptech.school       |
+| 1232462 | Lucas Oristanio    | luacas.oristanio@sptech.school   |
+| 1232627 | Vitor Santos       | vitor.santos@sptech.school       |
+| 1232926 | Guilherme Carvalho | guilherme.carvalho@sptech.school |
++---------+--------------------+----------------------------------+
+9 rows in set (0.00 sec)
+
+mysql> select * from grupo;
++---------+---------+----------+---------------------------------------------------+
+| idGrupo | fkAluno | nome     | descricao                                         |
++---------+---------+----------+---------------------------------------------------+
+|       1 | 1232072 | Vinum    | Monitoramento na temperatura do vinho             |
+|       2 | 1232002 | Vinum    | Monitoramento na temperatura do vinho             |
+|       3 | 1232195 | ArCar    | Monitoramento nas partes eletricos do carro       |
+|       4 | 1232462 | ArCar    | Monitoramento nas partes eletricos do carro       |
+|       5 | 1232021 | ArCar    | Monitoramento nas partes eletricos do carro       |
+|       6 | 1232325 | FrutLive | Monitoramento na temperatura e umidade das frutas |
+|       7 | 1232627 | FrutLive | Monitoramento na temperatura e umidade das frutas |
+|       8 | 1232926 | FrutLive | Monitoramento na temperatura e umidade das frutas |
+|       9 | 1232152 | Vinum    | Monitoramento na temperatura do vinho             |
++---------+---------+----------+---------------------------------------------------+
+9 rows in set (0.00 sec)
+
+mysql> select * from professor;
++-------------+-------------------+----------------+
+| idProfessor | nome              | disciplina     |
++-------------+-------------------+----------------+
+|       10000 | Fernando Brandão  | PI             |
+|       10001 | Fernanda Caramiko | PI             |
+|       10002 | Viviam Flamengo   | Banco de Dados |
+|       10003 | Caio Eduardo      | Algoritmo      |
++-------------+-------------------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from avaliacao;
++-------------+---------+-------------+----------------------+-----------+---------------------+------+
+| idAvaliacao | fkGrupo | fkProfessor | fkProfessorAvaliador | fkRaAluno | dtAvaliacao         | nota |
++-------------+---------+-------------+----------------------+-----------+---------------------+------+
+|           1 |       1 |       10002 |                10001 |   1232072 | 2023-11-10 09:00:00 | 9.00 |
+|           2 |       2 |       10002 |                10001 |   1232002 | 2023-11-10 10:30:00 | 8.20 |
+|           3 |       3 |       10003 |                10000 |   1232021 | 2023-11-13 12:30:00 | 7.75 |
+|           4 |       4 |       10003 |                10000 |   1232152 | 2023-11-13 13:00:00 | 9.25 |
+|           5 |       5 |       10002 |                10001 |   1232195 | 2023-11-14 15:00:00 | 8.35 |
+|           6 |       6 |       10002 |                10001 |   1232325 | 2023-11-14 14:30:00 | 7.25 |
+|           7 |       7 |       10003 |                10000 |   1232462 | 2023-11-15 11:00:00 | 8.90 |
+|           8 |       8 |       10003 |                10000 |   1232627 | 2023-11-15 12:00:00 | 9.00 |
+|           9 |       9 |       10002 |                10001 |   1232926 | 2023-11-13 13:00:00 | 9.50 |
++-------------+---------+-------------+----------------------+-----------+---------------------+------+
+9 rows in set (0.00 sec)
+
+mysql>
+
+-- 4. Se for necessário, fazer os acertos da(s) chaves(s) estrangeira(s).
+-- 5. Exibir os dados dos grupos e os dados de seus respectivos alunos.
+mysql> select * from grupo
+    -> join aluno
+    -> on fkAluno = ra;
++---------+---------+----------+---------------------------------------------------+---------+--------------------+----------------------------------+
+| idGrupo | fkAluno | nome     | descricao                                         | RA      | nome               | email                            |
++---------+---------+----------+---------------------------------------------------+---------+--------------------+----------------------------------+
+|       1 | 1232072 | Vinum    | Monitoramento na temperatura do vinho             | 1232072 | Kauan Almeida      | kauan.almeida@sptech.school      |
+|       2 | 1232002 | Vinum    | Monitoramento na temperatura do vinho             | 1232002 | Nicolas Kleyton    | nicolas.kleyton@sptech.school    |
+|       3 | 1232195 | ArCar    | Monitoramento nas partes eletricos do carro       | 1232195 | Luis Guilherme     | luis.guilherme@sptech.school     |
+|       4 | 1232462 | ArCar    | Monitoramento nas partes eletricos do carro       | 1232462 | Lucas Oristanio    | luacas.oristanio@sptech.school   |
+|       5 | 1232021 | ArCar    | Monitoramento nas partes eletricos do carro       | 1232021 | Gabriel Guedes     | gabriel.guedes@sptech.school     |
+|       6 | 1232325 | FrutLive | Monitoramento na temperatura e umidade das frutas | 1232325 | Kevin Peters       | kavin.peters@sptech.school       |
+|       7 | 1232627 | FrutLive | Monitoramento na temperatura e umidade das frutas | 1232627 | Vitor Santos       | vitor.santos@sptech.school       |
+|       8 | 1232926 | FrutLive | Monitoramento na temperatura e umidade das frutas | 1232926 | Guilherme Carvalho | guilherme.carvalho@sptech.school |
+|       9 | 1232152 | Vinum    | Monitoramento na temperatura do vinho             | 1232152 | Bruna Duran        | bruna.duran@sptech.school        |
++---------+---------+----------+---------------------------------------------------+---------+--------------------+----------------------------------+
+9 rows in set (0.00 sec)
+
+-- 6. Exibir os dados de um determinado grupo e os dados de seus respectivos alunos.
+mysql> select * from grupo
+    -> join aluno
+    -> on fkAluno = ra
+    -> where grupo.nome = 'Vinum';
++---------+---------+-------+---------------------------------------+---------+-----------------+-------------------------------+
+| idGrupo | fkAluno | nome  | descricao                             | RA      | nome            | email                         |
++---------+---------+-------+---------------------------------------+---------+-----------------+-------------------------------+
+|       1 | 1232072 | Vinum | Monitoramento na temperatura do vinho | 1232072 | Kauan Almeida   | kauan.almeida@sptech.school   |
+|       2 | 1232002 | Vinum | Monitoramento na temperatura do vinho | 1232002 | Nicolas Kleyton | nicolas.kleyton@sptech.school |
+|       9 | 1232152 | Vinum | Monitoramento na temperatura do vinho | 1232152 | Bruna Duran     | bruna.duran@sptech.school     |
++---------+---------+-------+---------------------------------------+---------+-----------------+-------------------------------+
+3 rows in set (0.00 sec)
+
+-- 7. Exibir a média das notas atribuidas aos grupos, no geral.
+mysql> select avg(nota) from avaliacao;
++-----------+
+| avg(nota) |
++-----------+
+|  8.577778 |
++-----------+
+1 row in set (0.87 sec)
+
+-- 8. Exibir a nota mínima e a nota máxima que foi atribuída aos grupos, no geral.
+mysql> select min(nota), max(nota) from avaliacao;
++-----------+-----------+
+| min(nota) | max(nota) |
++-----------+-----------+
+|      7.25 |      9.50 |
++-----------+-----------+
+1 row in set (0.00 sec)
+
+-- 9. Exibir a soma das notas dadas aos grupos, no geral.
+mysql>select sum(nota) from avaliacao;
++-----------+
+| sum(nota) |
++-----------+
+|     77.20 |
++-----------+
+1 row in set (0.00 sec)
+
+-- 10. Exibir os dados dos professores que avaliaram cada grupo, os dados dos grupos, a data e o horário da avaliação.
+mysql> select p.*,
+    -> g.*,
+    -> a.dtAvaliacao
+    -> from professor as p
+    -> join avaliacao as a
+    -> on p.idProfessor = a.fkProfessorAvaliador
+    -> join grupo as g
+    -> on a.fkGrupo = g.idGrupo;
++-------------+-------------------+------------+---------+---------+----------+---------------------------------------------------+---------------------+
+| idProfessor | nome              | disciplina | idGrupo | fkAluno | nome     | descricao                                         | dtAvaliacao         |
++-------------+-------------------+------------+---------+---------+----------+---------------------------------------------------+---------------------+
+|       10000 | Fernando Brandão  | PI         |       3 | 1232195 | ArCar    | Monitoramento nas partes eletricos do carro       | 2023-11-13 12:30:00 |
+|       10000 | Fernando Brandão  | PI         |       4 | 1232462 | ArCar    | Monitoramento nas partes eletricos do carro       | 2023-11-13 13:00:00 |
+|       10000 | Fernando Brandão  | PI         |       7 | 1232627 | FrutLive | Monitoramento na temperatura e umidade das frutas | 2023-11-15 11:00:00 |
+|       10000 | Fernando Brandão  | PI         |       8 | 1232926 | FrutLive | Monitoramento na temperatura e umidade das frutas | 2023-11-15 12:00:00 |
+|       10001 | Fernanda Caramiko | PI         |       1 | 1232072 | Vinum    | Monitoramento na temperatura do vinho             | 2023-11-10 09:00:00 |
+|       10001 | Fernanda Caramiko | PI         |       2 | 1232002 | Vinum    | Monitoramento na temperatura do vinho             | 2023-11-10 10:30:00 |
+|       10001 | Fernanda Caramiko | PI         |       5 | 1232021 | ArCar    | Monitoramento nas partes eletricos do carro       | 2023-11-14 15:00:00 |
+|       10001 | Fernanda Caramiko | PI         |       6 | 1232325 | FrutLive | Monitoramento na temperatura e umidade das frutas | 2023-11-14 14:30:00 |
+|       10001 | Fernanda Caramiko | PI         |       9 | 1232152 | Vinum    | Monitoramento na temperatura do vinho             | 2023-11-13 13:00:00 |
++-------------+-------------------+------------+---------+---------+----------+---------------------------------------------------+---------------------+
+9 rows in set (0.00 sec)
+
+-- 11. Exibir os dados dos professores que avaliaram um determinado grupo, os dados do grupo, a data e o horário da avaliação.
+mysql> select p.*,
+    ->      g.*,
+    ->      a.dtAvaliacao
+    ->      from professor as p
+    ->      join avaliacao as a
+    ->      on p.idProfessor = a.fkProfessorAvaliador
+    ->      join grupo as g
+    ->      on a.fkGrupo = g.idGrupo
+    -> where g.nome = 'ArCar';
++-------------+-------------------+------------+---------+---------+-------+---------------------------------------------+---------------------+
+| idProfessor | nome              | disciplina | idGrupo | fkAluno | nome  | descricao                                   | dtAvaliacao         |
++-------------+-------------------+------------+---------+---------+-------+---------------------------------------------+---------------------+
+|       10000 | Fernando Brandão  | PI         |       3 | 1232195 | ArCar | Monitoramento nas partes eletricos do carro | 2023-11-13 12:30:00 |
+|       10000 | Fernando Brandão  | PI         |       4 | 1232462 | ArCar | Monitoramento nas partes eletricos do carro | 2023-11-13 13:00:00 |
+|       10001 | Fernanda Caramiko | PI         |       5 | 1232021 | ArCar | Monitoramento nas partes eletricos do carro | 2023-11-14 15:00:00 |
++-------------+-------------------+------------+---------+---------+-------+---------------------------------------------+---------------------+
+3 rows in set (0.00 sec)
+
+-- 12. Exibir os nomes dos grupos que foram avaliados por um determinado professor.
+mysql> select g.*, a.fkProfessorAvaliador from grupo as g
+    -> join avaliacao as a
+    -> on g.idGrupo = a.fkGrupo
+    -> where a.fkProfessorAvaliador = 10000;
++---------+---------+----------+---------------------------------------------------+----------------------+
+| idGrupo | fkAluno | nome     | descricao                                         | fkProfessorAvaliador |
++---------+---------+----------+---------------------------------------------------+----------------------+
+|       3 | 1232195 | ArCar    | Monitoramento nas partes eletricos do carro       |                10000 |
+|       4 | 1232462 | ArCar    | Monitoramento nas partes eletricos do carro       |                10000 |
+|       7 | 1232627 | FrutLive | Monitoramento na temperatura e umidade das frutas |                10000 |
+|       8 | 1232926 | FrutLive | Monitoramento na temperatura e umidade das frutas |                10000 |
++---------+---------+----------+---------------------------------------------------+----------------------+
+4 rows in set (0.00 sec)
+
+-- 13. Exibir os dados dos grupos, os dados dos alunos correspondentes, os dados dos professores que avaliaram, a data e o horário da avaliação.
+mysql> select g.*, al.*, p.*, a.dtAvaliacao from grupo as g
+	join aluno as al
+		on g.fkAluno = al.ra
+	join avaliacao as a
+		on g.idGrupo = a.fkGrupo
+	join professor as p
+		on a.fkProfessorAvaliador = p.idProfessor;
++---------+---------+----------+---------------------------------------------------+---------+--------------------+----------------------------------+-------------+-------------------+------------+---------------------+
+| idGrupo | fkAluno | nome     | descricao                                         | RA      | nome               | email                            | idProfessor | nome              | disciplina | dtAvaliacao         |
++---------+---------+----------+---------------------------------------------------+---------+--------------------+----------------------------------+-------------+-------------------+------------+---------------------+
+|       3 | 1232195 | ArCar    | Monitoramento nas partes eletricos do carro       | 1232195 | Luis Guilherme     | luis.guilherme@sptech.school     |       10000 | Fernando Brandão  | PI         | 2023-11-13 12:30:00 |
+|       4 | 1232462 | ArCar    | Monitoramento nas partes eletricos do carro       | 1232462 | Lucas Oristanio    | luacas.oristanio@sptech.school   |       10000 | Fernando Brandão  | PI         | 2023-11-13 13:00:00 |
+|       7 | 1232627 | FrutLive | Monitoramento na temperatura e umidade das frutas | 1232627 | Vitor Santos       | vitor.santos@sptech.school       |       10000 | Fernando Brandão  | PI         | 2023-11-15 11:00:00 |
+|       8 | 1232926 | FrutLive | Monitoramento na temperatura e umidade das frutas | 1232926 | Guilherme Carvalho | guilherme.carvalho@sptech.school |       10000 | Fernando Brandão  | PI         | 2023-11-15 12:00:00 |
+|       1 | 1232072 | Vinum    | Monitoramento na temperatura do vinho             | 1232072 | Kauan Almeida      | kauan.almeida@sptech.school      |       10001 | Fernanda Caramiko | PI         | 2023-11-10 09:00:00 |
+|       2 | 1232002 | Vinum    | Monitoramento na temperatura do vinho             | 1232002 | Nicolas Kleyton    | nicolas.kleyton@sptech.school    |       10001 | Fernanda Caramiko | PI         | 2023-11-10 10:30:00 |
+|       5 | 1232021 | ArCar    | Monitoramento nas partes eletricos do carro       | 1232021 | Gabriel Guedes     | gabriel.guedes@sptech.school     |       10001 | Fernanda Caramiko | PI         | 2023-11-14 15:00:00 |
+|       6 | 1232325 | FrutLive | Monitoramento na temperatura e umidade das frutas | 1232325 | Kevin Peters       | kavin.peters@sptech.school       |       10001 | Fernanda Caramiko | PI         | 2023-11-14 14:30:00 |
+|       9 | 1232152 | Vinum    | Monitoramento na temperatura do vinho             | 1232152 | Bruna Duran        | bruna.duran@sptech.school        |       10001 | Fernanda Caramiko | PI         | 2023-11-13 13:00:00 |
++---------+---------+----------+---------------------------------------------------+---------+--------------------+----------------------------------+-------------+-------------------+------------+---------------------+
+9 rows in set (0.00 sec)
+
+-- 14. Exibir a quantidade de notas distintas.
+mysql> select count(nota) from avaliacao;
++-------------+
+| count(nota) |
++-------------+
+|           9 |
++-------------+
+1 row in set (1.93 sec)
+
+-- 15. Exibir a identificação do professor (pode ser o fk ou o nome), a média das notas e a soma das notas atribuída, agrupadas por professor.
+mysql> select p.nome, 
+		avg(nota) as media,
+		sum(nota) as soma 
+	from professor as p
+	join avaliacao as a
+		on p.idProfessor = a.fkProfessorAvaliador
+	group by p.nome;
++-------------------+----------+-------+
+| nome              | media    | soma  |
++-------------------+----------+-------+
+| Fernanda Caramiko | 8.460000 | 42.30 |
+| Fernando Brandão  | 8.725000 | 34.90 |
++-------------------+----------+-------+
+2 rows in set (0.00 sec)
+
+-- 16. Exibir a identificação do grupo (pode ser o fk ou o nome), a média das notas e a soma das notas atribuídas, agrupadas por grupo.
+mysql> select g.nome, 
+		avg(nota) as media, 
+		sum(nota) as soma 
+	from grupo as g
+	join avaliacao as a
+		on g.idGrupo = a.fkGrupo
+	group by g.nome;
++----------+----------+-------+
+| nome     | media    | soma  |
++----------+----------+-------+
+| Vinum    | 8.900000 | 26.70 |
+| ArCar    | 8.450000 | 25.35 |
+| FrutLive | 8.383333 | 25.15 |
++----------+----------+-------+
+3 rows in set (0.00 sec)
+
+-- 17. Exibir a identificação do professor (pode ser o fk ou o nome), a menor nota e a maior nota atribuída, agrupada por professor.
+mysql> select p.nome, 
+		min(nota) as 'Menor_Nota',
+		max(nota) as 'Maior_Nota'
+	from professor as p
+	join avaliacao as a
+		on p.idProfessor = a.fkProfessorAvaliador
+	group by p.nome;
++-------------------+------------+------------+
+| nome              | Menor_Nota | Maior_Nota |
++-------------------+------------+------------+
+| Fernanda Caramiko |       7.25 |       9.50 |
+| Fernando Brandão  |       7.75 |       9.25 |
++-------------------+------------+------------+
+2 rows in set (1.65 sec)
+
+-- 18. Exibir a identificação do grupo (pode ser o fk ou o nome), a menor nota e a maior nota atribuída, agrupada por grupo.
+mysql> 	select g.nome,
+		min(nota) as 'Menor_Nota',
+		max(nota) as 'Maior_Nota'
+	from grupo as g
+	join avaliacao as a
+		on g.idGrupo = a.fkGrupo
+	group by g.nome;
++----------+------------+------------+
+| nome     | Menor_Nota | Maior_Nota |
++----------+------------+------------+
+| Vinum    |       8.20 |       9.50 |
+| ArCar    |       7.75 |       9.25 |
+| FrutLive |       7.25 |       9.00 |
++----------+------------+------------+
+3 rows in set (0.00 sec)
+
+mysql>exit
