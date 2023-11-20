@@ -1,0 +1,523 @@
+
+mysql> CREATE DATABASE Exercicio11;
+Query OK, 1 row affected (0.48 sec)
+
+mysql> USE Exercicio11;
+Database changed
+mysql>CREATE TABLE Departamento(
+	idDepto INT PRIMARY KEY,
+	nomeDepto VARCHAR(45),
+	fkGerente INT,
+	dataInicioGER DATE);
+Query OK, 0 rows affected (1.85 sec)
+
+mysql> CREATE TABLE Funcionario(
+	idFunc INT PRIMARY KEY,
+	nomeFunc VARCHAR(30),
+	salario DECIMAL(10,2),
+	sexo char(1),
+	fkSupervisor INT,
+	dataNasc DATE,
+	fkDepto INT,
+	CONSTRAINT fkIdFuncio FOREIGN KEY (fkSupervisor) REFERENCES Funcionario (idFunc),
+	CONSTRAINT fkIdDepto FOREIGN KEY (fkDepto) REFERENCES Departamento(idDepto));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> CREATE TABLE Projeto(
+	idProj INT PRIMARY KEY,
+	nomeProj VARCHAR(50),
+	localProj VARCHAR(70),
+	fkDepto INT
+	CONSTRAINT fkIdDeparta FOREIGN KEY (fkDepto) REFERENCES Departamento (idDepto));
+Query OK, 0 rows affected (1.60 sec)
+
+mysql> CREATE TABLE FuncProj(
+	fkFunc INT,
+	fkProj INT,
+	CONSTRAINT fkIdFunc FOREIGN KEY (fkFunc) REFERENCES Funcionario(idFunc),
+	CONSTRAINT fkIdProj FOREIGN KEY (fkProj) REFERENCES Projeto(idProj),
+	horas decimal(3,1));
+Query OK, 0 rows affected (1.62 sec)
+
+mysql> INSERT INTO Departamento VALUES
+	(105, 'Pesquisa', 2, '2008-05-22'),
+	(104, 'Administração', 7, '2015-01-01'),
+	(101, 'Matriz', 8, '2001-06-19');
+Query OK, 3 rows affected (1.52 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO Funcionario VALUES
+	(1, 'Joao Silva', 3500, 'm', 2, '1985-01-09', 105),
+	(2, 'Fernando Wong', 4500, 'm', 8, '1975-12-08', 105),
+	(3, 'Alice Sousa', 2500, 'f', 7, '1988-01-19', 104),
+	(4, 'Janice Morais', 4300, 'f', 8, '1970-06-20', 104),
+	(5, 'Ronaldo Lima', 3800, 'm', 1, '1982-09-15', 105),
+	(6, 'Joice Leite', 2500, 'f', 1, '1992-07-31', 105),
+	(7, 'Antonio Pereira', 2500, 'm', 4, '1989-03-29', 104),
+	(8, 'Juliano Brito', 5500, 'm', NULL, '1957-11-10', 101);
+Query OK, 8 rows affected (0.15 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO projeto VALUES
+	(1, 'Produto X', 'Santo André', 105),
+	(2, 'Produto y', 'Itu', 105),
+	(3, 'Produto z', 'São Paulo', 105),
+	(10, 'Informatização', 'Mauá', 104),
+	(20, 'Reorganização', 'São Paulo', 101),
+	(30, 'Benefícios', 'Mauá', 104);
+Query OK, 6 rows affected (0.03 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO FuncProj VALUES
+	(1, 1, 32.5),
+	(1, 2, 7.5),
+	(5, 3, 40.0),
+	(6, 1, 20.0),
+	(6, 2, 20.0),
+	(2, 2, 10.0),
+	(2, 3, 10.0),
+	(2, 10, 10.0),
+	(2, 20, 10.0),
+	(3, 30, 30.0),
+	(3, 10, 10.0),
+	(7, 10, 35.0),
+	(7, 30, 5.0),
+	(4, 30, 20.0),
+	(4, 20, 15.0),
+	(8, 20, NULL);
+Query OK, 16 rows affected (0.03 sec)
+Records: 16  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM Departamento;
++---------+---------------+-----------+---------------+
+| idDepto | nomeDepto     | fkGerente | dataInicioGER |
++---------+---------------+-----------+---------------+
+|     101 | Matriz        |         8 | 2001-06-19    |
+|     104 | Administração |         7 | 2015-01-01    |
+|     105 | Pesquisa      |         2 | 2008-05-22    |
++---------+---------------+-----------+---------------+
+3 rows in set (0.02 sec)
+
+mysql> SELECT * FROM Funcionario;
++--------+-----------------+---------+------+--------------+------------+---------+
+| idFunc | nomeFunc        | salario | sexo | fkSupervisor | dataNasc   | fkDepto |
++--------+-----------------+---------+------+--------------+------------+---------+
+|      1 | Joao Silva      | 3500.00 | m    |            2 | 1985-01-09 |     105 |
+|      2 | Fernando Wong   | 4500.00 | m    |            8 | 1975-12-08 |     105 |
+|      3 | Alice Sousa     | 2500.00 | f    |            7 | 1988-01-19 |     104 |
+|      4 | Janice Morais   | 4300.00 | f    |            8 | 1970-06-20 |     104 |
+|      5 | Ronaldo Lima    | 3800.00 | m    |            1 | 1982-09-15 |     105 |
+|      6 | Joice Leite     | 2500.00 | f    |            1 | 1992-07-31 |     105 |
+|      7 | Antonio Pereira | 2500.00 | m    |            4 | 1989-03-29 |     104 |
+|      8 | Juliano Brito   | 5500.00 | m    |         NULL | 1957-11-10 |     101 |
++--------+-----------------+---------+------+--------------+------------+---------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Projeto;
++--------+----------------+-------------+---------+
+| idProj | nomeProj       | localProj   | fkDepto |
++--------+----------------+-------------+---------+
+|      1 | Produto X      | Santo André |     105 |
+|      2 | Produto y      | Itu         |     105 |
+|      3 | Produto z      | São Paulo   |     105 |
+|     10 | Informatização | Mauá        |     104 |
+|     20 | Reorganização  | São Paulo   |     101 |
+|     30 | Benefícios     | Mauá        |     104 |
++--------+----------------+-------------+---------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * FROM FuncProj;
++--------+--------+-------+
+| fkFunc | fkProj | horas |
++--------+--------+-------+
+|      1 |      1 |  32.5 |
+|      1 |      2 |   7.5 |
+|      5 |      3 |  40.0 |
+|      6 |      1 |  20.0 |
+|      6 |      2 |  20.0 |
+|      2 |      2 |  10.0 |
+|      2 |      3 |  10.0 |
+|      2 |     10 |  10.0 |
+|      2 |     20 |  10.0 |
+|      3 |     30 |  30.0 |
+|      3 |     10 |  10.0 |
+|      7 |     10 |  35.0 |
+|      7 |     30 |   5.0 |
+|      4 |     30 |  20.0 |
+|      4 |     20 |  15.0 |
+|      8 |     20 |  NULL |
++--------+--------+-------+
+16 rows in set (0.00 sec)
+
+mysql> INSERT INTO Funcionario VALUES
+    ->     (null, 'Cecícilia', 2800, 'f', null, '1980-04-05', 104);
+ERROR 1048 (23000): Column 'idFunc' cannot be null
+-- Conseguiu inserir? Não
+-- Por que? Não podemos colocar uma chave primary como 'NULL', pois ela não é auto_increment, sendo assim temos que coloca-lá na mão, por conta disso não podemos fazer esse INSERT porque a chave primary está como 'NULL'. 
+
+mysql> INSERT INTO Funcionario VALUES
+    ->     (3, 'Alice Sousa', 2800, 'f', 4, '1980-04-05', 104);
+ERROR 1062 (23000): Duplicate entry '3' for key 'funcionario.PRIMARY'
+-- Conseguiu inserir? Não
+-- Por que? Não podemos repedir um id que está em uso por outro usuario, assim, na tabela já existe um usuáro com o id '3', como no INSERT está se repetindo, não podemos usa-ló.
+
+mysql> INSERT INTO Funcionario VALUES
+    	(9, 'Cecília Ribeiro', 2800, 'f', 4, '1980-04-05', 107);
+Query OK, 1 row affected (0.02 sec)
+-- Conseguiu inserir? Sim
+-- Por que? Para conseguirmos inserir um novo dado, a primary key não pode se repetir, assim ele atente todos os parametros necessarios para fazer esse novo INSERT.
+
+mysql> INSERT INTO Funcionario VALUES
+    	(9, 'Cecília Ribeiro', 2800, 'f', 4, '1980-04-05', 104);
+ERROR 1062 (23000): Duplicate entry '9' for key 'funcionario.PRIMARY'
+-- Conseguiu inserir? Não
+-- Por que? Já foi inserido um usuário com di 4, sendo assim não pode existir outro com o mesmo id, pois ele volta o erro de Duplicagem.
+
+mysql> DELETE FROM FuncProj WHERE fkFunc = 3 AND fkProj = 10;
+Query OK, 1 row affected (1.65 sec)
+-- Conseguiu exluir? Sim
+-- Por que? Os dois campos informados para ser deletados sendo eles fkFunc e fkProj, são existentes na tabela, assim, quando informamos que queremos deletar uma certa coluna, temos que especificar qual é atraves dos campos inseridos, assim ele especificou exatamente as fk.
+
+mysql> DELETE FROM Funcionario WHERE idFunc = 4;
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`exercicio11`.`funcproj`, CONSTRAINT `fkIdFunc` FOREIGN KEY (`fkFunc`) REFERENCES `funcionario` (`idFunc`))
+-- Conseguiu excluir? Não
+-- Por que? O funcionario de id 4 está sendo usado em outra tabela como uma fk, sendo assim não conseguimos excluir por conta da influencia que ela tem nas outras tabelas.
+
+mysql> DELETE FROM Funcionario WHERE idFunc = 2;
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`exercicio11`.`funcproj`, CONSTRAINT `fkIdFunc` FOREIGN KEY (`fkFunc`) REFERENCES `funcionario` (`idFunc`))
+-- Conseguiu excluir? Não
+-- Por que? O funcionario de id 2 está sendo usado em outra tabela como uma fk, sendo assim não conseguimos excluir por conta da influencia que ela tem nas outras tabelas.
+
+mysql> UPDATE Funcionario SET salario = 2800 WHERE idFunc = 3;
+Query OK, 1 row affected (1.66 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+-- Conseguiu alterar? Sim
+-- Por que? O id informado tinha na tabela, assim conseguimos sempre atualizar seus dados, o salario era diferente do que o informado, assim conseguindo mudar ele para outro valor.
+
+mysql> UPDATE Funcionario SET fkDepto = 101 WHERE idFunc = 3;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+-- Conseguiu alterar? Sim
+-- Por que? O id informado tinha na tabela, assim conseguimos sempre atualizar seus dados, o fkDepto era diferente do que o informado, assim conseguindo mudar ele para outro valor.
+
+mysql> UPDATE Funcionario SET fkDepto = 107 WHERE idFunc = 3;
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`exercicio11`.`funcionario`, CONSTRAINT `fkIdDepto` FOREIGN KEY (`fkDepto`) REFERENCES `departamento` (`idDepto`))
+-- Conseguiu alterar? Sim
+-- Por que? O id informado tinha na tabela, assim conseguimos sempre atualizar seus dados, o fkDepto era diferente do que o informado, assim conseguindo mudar ele para outro valor.
+
+mysql> SELECT f.dataNasc, f.salario FROM Funcionario as f WHERE f.nomeFunc = 'Joao Silva';
++------------+---------+
+| dataNasc   | salario |
++------------+---------+
+| 1985-01-09 | 3500.00 |
++------------+---------+
+1 row in set (0.00 sec)
+
+mysql> SELECT f.salario FROM Funcionario as f;
++---------+
+| salario |
++---------+
+| 3500.00 |
+| 4500.00 |
+| 2800.00 |
+| 4300.00 |
+| 3800.00 |
+| 2500.00 |
+| 2500.00 |
+| 5500.00 |
+| 2800.00 |
++---------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT DISTINCT(f.salario) FROM Funcionario as f;
++---------+
+| salario |
++---------+
+| 3500.00 |
+| 4500.00 |
+| 2800.00 |
+| 4300.00 |
+| 3800.00 |
+| 2500.00 |
+| 5500.00 |
++---------+
+7 rows in set (1.62 sec)
+
+mysql> SELECT * FROM Funcionario order by nomeFunc;
++--------+-----------------+---------+------+--------------+------------+---------+
+| idFunc | nomeFunc        | salario | sexo | fkSupervisor | dataNasc   | fkDepto |
++--------+-----------------+---------+------+--------------+------------+---------+
+|      3 | Alice Sousa     | 2800.00 | f    |            7 | 1988-01-19 |     101 |
+|      7 | Antonio Pereira | 2500.00 | m    |            4 | 1989-03-29 |     104 |
+|      9 | Cecília Ribeiro | 2800.00 | f    |            4 | 1980-04-05 |     104 |
+|      2 | Fernando Wong   | 4500.00 | m    |            8 | 1975-12-08 |     105 |
+|      4 | Janice Morais   | 4300.00 | f    |            8 | 1970-06-20 |     104 |
+|      1 | Joao Silva      | 3500.00 | 3    |            2 | 1985-01-09 |     105 |
+|      6 | Joice Leite     | 2500.00 | f    |            1 | 1992-07-31 |     105 |
+|      8 | Juliano Brito   | 5500.00 | m    |         NULL | 1957-11-10 |     101 |
+|      5 | Ronaldo Lima    | 3800.00 | m    |            1 | 1982-09-15 |     105 |
++--------+-----------------+---------+------+--------------+------------+---------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Funcionario order by salario desc;
++--------+-----------------+---------+------+--------------+------------+---------+
+| idFunc | nomeFunc        | salario | sexo | fkSupervisor | dataNasc   | fkDepto |
++--------+-----------------+---------+------+--------------+------------+---------+
+|      8 | Juliano Brito   | 5500.00 | m    |         NULL | 1957-11-10 |     101 |
+|      2 | Fernando Wong   | 4500.00 | m    |            8 | 1975-12-08 |     105 |
+|      4 | Janice Morais   | 4300.00 | f    |            8 | 1970-06-20 |     104 |
+|      5 | Ronaldo Lima    | 3800.00 | m    |            1 | 1982-09-15 |     105 |
+|      1 | Joao Silva      | 3500.00 | 3    |            2 | 1985-01-09 |     105 |
+|      3 | Alice Sousa     | 2800.00 | f    |            7 | 1988-01-19 |     107 |
+|      9 | Cecília Ribeiro | 2800.00 | f    |            4 | 1980-04-05 |     104 |
+|      6 | Joice Leite     | 2500.00 | f    |            1 | 1992-07-31 |     105 |
+|      7 | Antonio Pereira | 2500.00 | m    |            4 | 1989-03-29 |     104 |
++--------+-----------------+---------+------+--------------+------------+---------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Funcionario WHERE salario > 2000 AND salario < 4000;
++--------+-----------------+---------+------+--------------+------------+---------+
+| idFunc | nomeFunc        | salario | sexo | fkSupervisor | dataNasc   | fkDepto |
++--------+-----------------+---------+------+--------------+------------+---------+
+|      1 | Joao Silva      | 3500.00 | 3    |            2 | 1985-01-09 |     105 |
+|      3 | Alice Sousa     | 2800.00 | f    |            7 | 1988-01-19 |     107 |
+|      5 | Ronaldo Lima    | 3800.00 | m    |            1 | 1982-09-15 |     105 |
+|      6 | Joice Leite     | 2500.00 | f    |            1 | 1992-07-31 |     105 |
+|      7 | Antonio Pereira | 2500.00 | m    |            4 | 1989-03-29 |     104 |
+|      9 | Cecília Ribeiro | 2800.00 | f    |            4 | 1980-04-05 |     104 |
++--------+-----------------+---------+------+--------------+------------+---------+
+6 rows in set (1.62 sec)
+
+mysql> SELECT f.nomeFunc, f.salario FROM Funcionario as f where f.nomeFunc like 'j%';
++---------------+---------+
+| nomeFunc      | salario |
++---------------+---------+
+| Joao Silva    | 3500.00 |
+| Janice Morais | 4300.00 |
+| Joice Leite   | 2500.00 |
+| Juliano Brito | 5500.00 |
++---------------+---------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT f.nomeFunc, f.salario FROM Funcionario as f WHERE f.nomeFunc like '%a';
++-----------------+---------+
+| nomeFunc        | salario |
++-----------------+---------+
+| Joao Silva      | 3500.00 |
+| Alice Sousa     | 2800.00 |
+| Ronaldo Lima    | 3800.00 |
+| Antonio Pereira | 2500.00 |
++-----------------+---------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT f.nomeFunc FROM Funcionario as f WHERE f.nomeFunc like '__n%';
++---------------+
+| nomeFunc      |
++---------------+
+| Janice Morais |
+| Ronaldo Lima  |
++---------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT f.nomeFunc, f.dataNasc FROM Funcionario as f WHERE f.nomeFunc like '%s____';
++-------------+------------+
+| nomeFunc    | dataNasc   |
++-------------+------------+
+| Joao Silva  | 1985-01-09 |
+| Alice Sousa | 1988-01-19 |
++-------------+------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Funcionario WHERE fkDepto = 105;
++--------+---------------+---------+------+--------------+------------+---------+
+| idFunc | nomeFunc      | salario | sexo | fkSupervisor | dataNasc   | fkDepto |
++--------+---------------+---------+------+--------------+------------+---------+
+|      1 | Joao Silva    | 3500.00 | 3    |            2 | 1985-01-09 |     105 |
+|      2 | Fernando Wong | 4500.00 | m    |            8 | 1975-12-08 |     105 |
+|      5 | Ronaldo Lima  | 3800.00 | m    |            1 | 1982-09-15 |     105 |
+|      6 | Joice Leite   | 2500.00 | f    |            1 | 1992-07-31 |     105 |
++--------+---------------+---------+------+--------------+------------+---------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Funcionario WHERE fkDepto = 105 AND salario > 3500;
++--------+---------------+---------+------+--------------+------------+---------+
+| idFunc | nomeFunc      | salario | sexo | fkSupervisor | dataNasc   | fkDepto |
++--------+---------------+---------+------+--------------+------------+---------+
+|      2 | Fernando Wong | 4500.00 | m    |            8 | 1975-12-08 |     105 |
+|      5 | Ronaldo Lima  | 3800.00 | m    |            1 | 1982-09-15 |     105 |
++--------+---------------+---------+------+--------------+------------+---------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Funcionario WHERE fkDepto = 105 AND nomeFunc like 'j%';
++--------+-------------+---------+------+--------------+------------+---------+
+| idFunc | nomeFunc    | salario | sexo | fkSupervisor | dataNasc   | fkDepto |
++--------+-------------+---------+------+--------------+------------+---------+
+|      1 | Joao Silva  | 3500.00 | 3    |            2 | 1985-01-09 |     105 |
+|      6 | Joice Leite | 2500.00 | f    |            1 | 1992-07-31 |     105 |
++--------+-------------+---------+------+--------------+------------+---------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT f.idFunc as 'idFuncionario', f.nomeFunc, s.idFunc as 'idSupervisor', s.nomeFunc 
+	FROM Funcionario AS f
+	join Funcionario AS s
+		ON f.fkSupervisor = s.idFunc; 
++---------------+-----------------+--------------+-----------------+
+| idFuncionario | nomeFunc        | idSupervisor | nomeFunc        |
++---------------+-----------------+--------------+-----------------+
+|             1 | Joao Silva      |            2 | Fernando Wong   |
+|             2 | Fernando Wong   |            8 | Juliano Brito   |
+|             3 | Alice Sousa     |            7 | Antonio Pereira |
+|             4 | Janice Morais   |            8 | Juliano Brito   |
+|             5 | Ronaldo Lima    |            1 | Joao Silva      |
+|             6 | Joice Leite     |            1 | Joao Silva      |
+|             7 | Antonio Pereira |            4 | Janice Morais   |
+|             9 | Cecília Ribeiro |            4 | Janice Morais   |
++---------------+-----------------+--------------+-----------------+
+8 rows in set (0.00 sec)
+
+idProj projeto
+numero do departamento - projeto
+nome do gerente funcionario
+dataNasc gerente funcionario
+
+
+mysql> SELECT p.idProj, d.idDepto, f.nomeFunc, f.dataNasc  
+	FROM Projeto AS p
+	join departamento AS d
+		ON p.fkDepto = d.idDepto
+	join Funcionario AS f
+		ON d.idDepto = f.fkDepto
+	WHERE p.localProj = 'São Paulo';
++--------+---------+---------------+------------+
+| idProj | idDepto | nomeFunc      | dataNasc   |
++--------+---------+---------------+------------+
+|      3 |     105 | Joao Silva    | 1985-01-09 |
+|      3 |     105 | Fernando Wong | 1975-12-08 |
+|      3 |     105 | Ronaldo Lima  | 1982-09-15 |
+|      3 |     105 | Joice Leite   | 1992-07-31 |
+|     20 |     101 | Alice Sousa   | 1988-01-19 |
+|     20 |     101 | Juliano Brito | 1957-11-10 |
++--------+---------+---------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT f.idFunc, f.nomeFunc, p.idProj,p.nomeProj, fp.horas
+	from funcionario AS f
+	JOIN FuncProj AS fp
+		ON f.idFunc = fp.fkFunc
+	JOIN projeto AS p
+		ON fp.fkProj = p.idProj;
++--------+-----------------+--------+----------------+-------+
+| idFunc | nomeFunc        | idProj | nomeProj       | horas |
++--------+-----------------+--------+----------------+-------+
+|      1 | Joao Silva      |      1 | Produto X      |  32.5 |
+|      6 | Joice Leite     |      1 | Produto X      |  20.0 |
+|      1 | Joao Silva      |      2 | Produto y      |   7.5 |
+|      6 | Joice Leite     |      2 | Produto y      |  20.0 |
+|      2 | Fernando Wong   |      2 | Produto y      |  10.0 |
+|      5 | Ronaldo Lima    |      3 | Produto z      |  40.0 |
+|      2 | Fernando Wong   |      3 | Produto z      |  10.0 |
+|      2 | Fernando Wong   |     10 | Informatização |  10.0 |
+|      7 | Antonio Pereira |     10 | Informatização |  35.0 |
+|      2 | Fernando Wong   |     20 | Reorganização  |  10.0 |
+|      4 | Janice Morais   |     20 | Reorganização  |  15.0 |
+|      8 | Juliano Brito   |     20 | Reorganização  |  NULL |
+|      3 | Alice Sousa     |     30 | Benefícios     |  30.0 |
+|      7 | Antonio Pereira |     30 | Benefícios     |   5.0 |
+|      4 | Janice Morais   |     30 | Benefícios     |  20.0 |
++--------+-----------------+--------+----------------+-------+
+15 rows in set (1.76 sec)
+
+mysql> SELECT f.nomeFunc FROM Funcionario AS f WHERE dataNasc < '1980-01-01';
++---------------+
+| nomeFunc      |
++---------------+
+| Fernando Wong |
+| Janice Morais |
+| Juliano Brito |
++---------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT count(DISTINCT(f.salario)) FROM Funcionario AS f;
++----------------------------+
+| count(DISTINCT(f.salario)) |
++----------------------------+
+|                          7 |
++----------------------------+
+1 row in set (1.61 sec)
+
+mysql> SELECT count(DISTINCT(p.localProj)) FROM projeto AS p;
++------------------------------+
+| count(DISTINCT(p.localProj)) |
++------------------------------+
+|                            4 |
++------------------------------+
+1 row in set (1.60 sec)
+
+mysql> SELECT AVG(f.salario), SUM(f.salario) FROM Funcionario AS f;
++----------------+----------------+
+| AVG(f.salario) | SUM(f.salario) |
++----------------+----------------+
+|    3577.777778 |       32200.00 |
++----------------+----------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT MIN(f.salario), MAX(f.salario) FROM Funcionario AS f;
++----------------+----------------+
+| MIN(f.salario) | MAX(f.salario) |
++----------------+----------------+
+|        2500.00 |        5500.00 |
++----------------+----------------+
+1 row in set (0.33 sec)
+
+mysql> SELECT d.idDepto, AVG(f.salario), SUM(f.salario) 
+	FROM Departamento AS d
+	JOIN Funcionario AS f
+		ON d.idDepto = f.fkDepto
+	GROUP BY d.idDepto;
++---------+----------------+----------------+
+| idDepto | AVG(f.salario) | SUM(f.salario) |
++---------+----------------+----------------+
+|     101 |    4150.000000 |        8300.00 |
+|     104 |    3200.000000 |        9600.00 |
+|     105 |    3575.000000 |       14300.00 |
++---------+----------------+----------------+
+3 rows in set (0.02 sec)
+
+mysql> SELECT d.idDepto, MIN(f.salario), MAX(f.salario) 
+	FROM Departamento AS d
+	JOIN Funcionario AS f
+		on d.idDepto = f.fkDepto
+	GROUP BY d.idDepto;
++---------+----------------+----------------+
+| idDepto | MIN(f.salario) | MAX(f.salario) |
++---------+----------------+----------------+
+|     101 |        2800.00 |        5500.00 |
+|     104 |        2500.00 |        4300.00 |
+|     105 |        2500.00 |        4500.00 |
++---------+----------------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO Funcionario VALUES
+	(10, 'José da Silva', 1800, 'm', 3, '2000-10-12', null),
+	(11, 'Benedito Almeida', 1200, 'm', 5, '2001-09-01', null);
+Query OK, 2 rows affected (0.41 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO Departamento VALUES
+	(110, 'RH', 3, '2018-11-10');
+Query OK, 1 row affected (0.02 sec)
+
+mysql>
+
+
+
+
+
+
+
+
+
+
+
+
+
