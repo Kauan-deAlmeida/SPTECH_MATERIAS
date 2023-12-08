@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON - JavaScript Object Notation</title>
+</head>
+<body>
+    <button onclick="exibir()">Exibir Dados</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+
+    function exibir(){
+        var pessoa = {
+            nome: "Kauan", 
+            idade: 2003, 
+            altura: 1.75,
+            endereco: {
+                rua: "Haddock Lobo",
+                numero: 595
+            }
+        }
+
+        var anoAtual = new Date().getFullYear();
+        pessoa.nome = "Kauan de"
+        pessoa.sobrenome  = " Almeida"
+        pessoa['altura'] = 1.74
+        div_mensagem.innerHTML = `
+            Olá ${pessoa.nome}${pessoa.sobrenome}! <br>
+            Seu endereço é ${pessoa.endereco.rua}, ${pessoa.endereco.numero}<br>
+            Sua idade é: ${anoAtual - pessoa.idade}<br>
+            Sua altura é: ${pessoa.altura}
+        `  
+
+        console.log("pessoa: ", pessoa);
+        console.log("pessoa: ", pessoa.nome);
+        console.log("pessoa: ", pessoa.idade);
+        console.log("pessoa: ", pessoa.endereco);
+        console.log("pessoa: ", pessoa.altura);
+    }
+</script>
