@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="input_numero1">
+    <input type="text" id="input_numero2">
+    <button onclick="exibir()">
+        Mostrar mensagem
+    </button>
+    <div id="resulrt"></div>
+</body>
+</html>
+
+<script>
+
+    function exibir(){
+        let n1 = Number(input_numero1.value)
+        let n2 = Number(input_numero2.value)
+
+        resulrt.innerHTML = calcular(n1, n2)
+    }
+
+    function calcular(n1, n2){
+        return n1 + n2
+    }
+</script>
